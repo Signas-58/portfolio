@@ -103,10 +103,10 @@ export default function CVModal() {
                 Stanford Tsakane Sithole
               </h1>
               <p className="text-base font-semibold text-blue-700 mt-1">
-                Information Systems Graduate (BCom Hons 2.1) | Digital Banking & IT Operations
+                Information Systems Graduate (BCom Hons) | Digital Banking & IT Operations
               </p>
               <p className="text-xs text-slate-600 mt-1.5 max-w-xl leading-relaxed">
-                An Information Systems graduate with a Bachelor of Commerce Honours Degree (2.1) from Midlands State University, with practical experience in digital banking, merchant services, IT support, payment systems, data analysis, and cybersecurity. Possesses strong analytical, problem-solving, and communication skills and performs well in collaborative environments.
+                An Information Systems graduate with a Bachelor of Commerce Honours Degree from Midlands State University, with practical experience in digital banking, merchant services, IT support, payment systems, data analysis, and cybersecurity. Possesses strong analytical, problem-solving, and communication skills and performs well in collaborative environments.
               </p>
             </div>
 
@@ -153,8 +153,8 @@ export default function CVModal() {
               <p className="font-semibold text-slate-800">Zimbabwean</p>
             </div>
             <div>
-              <span className="text-slate-500 font-mono">Degree Class:</span>
-              <p className="font-semibold text-blue-700">Upper Second (2.1)</p>
+              <span className="text-slate-500 font-mono">Qualification:</span>
+              <p className="font-semibold text-blue-700">BCom Honours</p>
             </div>
           </div>
 
@@ -260,9 +260,9 @@ export default function CVModal() {
                 </div>
                 <div className="text-right">
                   <span className="text-xs font-mono font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
-                    Upper Second Division (2.1)
+                    Honours Degree
                   </span>
-                  <p className="text-[11px] font-mono text-slate-500 mt-0.5">2021 – 2025 (Cert #11812)</p>
+                  <p className="text-[11px] font-mono text-slate-500 mt-0.5">2021 – 2025</p>
                 </div>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed pt-1">

@@ -244,7 +244,7 @@ Knock, knock, Neo. 🐇💊`;
       clean.includes('bio') ||
       clean.includes('background')
     ) {
-      return "Stanford Tsakane Sithole is an Information Systems Honours graduate (Upper Second Division - 2.1) from Midlands State University (MSU) with professional banking operations experience at Metbank (Digital Banking & Merchant Services). He specializes in digital channels management, POS operations, Kubernetes service continuity, data analytics, and intelligent systems (FRIDAY, aegisBTC, DzidzaAI).";
+      return "Stanford Tsakane Sithole is an Information Systems Honours graduate from Midlands State University (MSU) with professional banking operations experience at Metbank (Digital Banking & Merchant Services). He specializes in digital channels management, POS operations, Kubernetes service continuity, data analytics, and intelligent systems (FRIDAY, aegisBTC, DzidzaAI).";
     }
 
     // 7. Education / Degree / University
@@ -260,7 +260,7 @@ Knock, knock, Neo. 🐇💊`;
     ) {
       return `[ ACADEMIC & CERTIFIED QUALIFICATIONS ]
 • Midlands State University (2021–2025):
-  Bachelor of Commerce Honours Degree in Information Systems (2.1 - Upper Second Division, Certificate #11812).
+  Bachelor of Commerce Honours Degree in Information Systems.
 • Thornhill High School (2019–2021):
   ZIMSEC Advanced Level (Computer Science: C, Business Studies: C, Geography: B).
 • Ministry of Higher & Tertiary Education (2019):
@@ -410,7 +410,7 @@ Disciplined, fast-learning, and ready to make an immediate impact across Softwar
     ) {
       return `[ OFFICIAL CURRICULUM VITAE // STANFORD TSAKANE SITHOLE ]
 • Full Official Name : Stanford Tsakane Sithole
-• Qualifications     : BCom Honours Degree in Information Systems (2.1 - Upper Second), Midlands State University
+• Qualifications     : BCom Honours Degree in Information Systems, Midlands State University
 • Industry Role      : Digital Banking Officer & Merchant Services Officer (Metbank Limited)
 • Professional Referees: Mr. W. Chakanyuka (Head of Digital Banking), Mr. B. Dube (Metbank)
 

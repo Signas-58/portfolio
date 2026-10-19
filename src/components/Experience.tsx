@@ -148,7 +148,7 @@ export default function Experience() {
                   BCom Honours in Information Systems
                 </h3>
                 <p className="text-xs font-mono text-cyan-400">Midlands State University (MSU)</p>
-                <p className="text-[11px] text-emerald-400 font-semibold">Upper Second Division (2.1) • Cert #11812</p>
+                <p className="text-[11px] text-slate-400 font-mono">Faculty of Business Sciences</p>
               </div>
             </div>
             <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400">

@@ -11,8 +11,8 @@ export default function MetricsBar() {
     {
       icon: GraduationCap,
       label: 'Academic Qualification',
-      value: 'BCom Hons (2.1)',
-      sub: 'Upper Second • MSU (2021–2025)',
+      value: 'BCom Honours',
+      sub: 'Information Systems, MSU (2021–2025)',
     },
     {
       icon: Building2,
