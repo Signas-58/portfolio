@@ -35,13 +35,14 @@ export default function AILab() {
   const [isTyping, setIsTyping] = useState(false);
 
   const promptChips = [
+    'help',
+    'why-hire',
     'Who made you?',
-    'How do you work?',
     'What time is it?',
-    'About Tsakane',
     'Metbank experience',
-    'Featured projects',
-    'Contact info',
+    'coffee',
+    'joke',
+    'matrix',
   ];
 
   // Practical Answer Resolver
@@ -247,18 +248,155 @@ export default function AILab() {
       return "Tsakane is actively seeking opportunities as an ICT Graduate Trainee, Systems Support Engineer, Data & BI Analyst, Junior Cybersecurity Analyst, or AI Integration Engineer.";
     }
 
-    // 15. Help / Commands
+    // 15. Help / Command Menu
     if (
-      clean.includes('help') ||
-      clean.includes('command') ||
-      clean.includes('menu') ||
-      clean.includes('what can i ask')
+      clean === 'help' ||
+      clean === 'commands' ||
+      clean === 'menu' ||
+      clean === 'what can i ask' ||
+      clean === 'options' ||
+      clean === 'manual'
     ) {
-      return "Here are some questions you can ask me:\n• 'Who made you?' or 'How do you work?'\n• 'What time is it?' or 'What is the date?'\n• 'Who is Tsakane?' or 'What is his education?'\n• 'Tell me about his Metbank experience'\n• 'What projects has he built?'\n• 'Tell me about FRIDAY or aegisBTC'\n• 'How can I contact him?'";
+      return `========================================
+    FRIDAY SYSTEM MANUAL // COMMAND INDEX
+========================================
+
+[ RECRUITER & CAREER SUITE ]
+• why-hire    : Top 3 compelling reasons to hire Tsakane
+• experience  : Metbank digital banking & Kubernetes ops
+• education   : BCom Honours (MSU) & academic coursework
+• stack       : Technical languages, databases & infra
+• projects    : Overview of all engineered systems
+• contact     : Direct email, LinkedIn, and Telegram
+
+[ SYSTEM & DIAGNOSTICS ]
+• sysinfo     : Host telemetry, architecture & region
+• time / date : Real-time clock & Harare CAT sync
+• ping        : Check simulated latency to gateway
+• status      : Operating condition & system health
+
+[ PROJECT DEEP-DIVES ]
+• friday      : Architecture of voice assistant engine
+• aegis       : Algorithmic trading & MT5 crypto arbitrage
+• dzidza      : Offline-first primary school learning PWA
+• campus      : MSU real-time incident reporting system
+
+[ ENTERTAINMENT & EASTER EGGS ]
+• matrix      : Follow the white rabbit...
+• ironman     : Initialize Mark 85 arc reactor protocol
+• coffee      : Brew a quick dose of developer fuel
+• joke        : Tech & programmer humor
+• quote       : Curated computer science quote
+• roll-dice   : Test your luck with a D20 roll
+• clear       : Reset and flush terminal history
+
+Type any command above into the input box to run it!`;
+    }
+
+    // 16. Why Hire Tsakane
+    if (clean.includes('why-hire') || clean.includes('why hire') || clean.includes('why should we hire')) {
+      return `TOP 3 REASONS TO HIRE TSAKANE:
+1. The Rare Hybrid: A strong BCom Honours in Information Systems combined with enterprise banking operations at Metbank — bridging business strategy, data integrity, and tech.
+2. Proven Builder: He doesn't just read documentation; he builds real software — voice assistants in Python, offline-first educational PWAs with SQLite, and algorithmic trading systems with MT5.
+3. Reliability & Systems Discipline: Hands-on exposure monitoring Kubernetes microservices, diagnosing POS terminal anomalies, and maintaining uptime in high-stakes environments.`;
+    }
+
+    // 17. System Info & Diagnostics
+    if (clean === 'sysinfo' || clean === 'info' || clean === 'specs') {
+      return `TSakaneOS System Telemetry:
+• Host Platform : Next.js 16.4 App Router (Turbopack)
+• Client Engine : React 19 + TypeScript
+• Deployment   : Vercel Global Edge Network
+• Domain Target : tsakanesithole.co.zw
+• Timezone      : Harare, Zimbabwe (CAT / UTC+2)
+• Interface     : Dual-Theme (Dev Cyber HUD / Recruiter View)
+• System Status : 100% Operational // 0 Active Vulnerabilities`;
+    }
+
+    // 18. Ping
+    if (clean === 'ping') {
+      return `PONG! Response time: 14ms.
+Simulated round-trip to Harare, Zimbabwe gateway confirmed.
+Signal strength: 99.8% // Packet loss: 0.00%`;
+    }
+
+    // 19. Status
+    if (clean === 'status' || clean === 'health') {
+      return `SYSTEM HEALTH DIAGNOSTIC:
+• Voice Assistant Pipeline (FRIDAY) : STANDBY / READY
+• Crypto Arbitrage Engine (aegisBTC) : READY
+• Offline PWA Caching (DzidzaAI)    : SYNCED
+• Metbank Incident Telemetry        : LOGGED
+• Overall Operating Condition       : NOMINAL`;
+    }
+
+    // 20. Matrix Easter Egg
+    if (clean === 'matrix' || clean === 'neo' || clean === 'red pill') {
+      return `Wake up, Recruiter...
+The Matrix has you.
+Follow the white rabbit: https://github.com/Signas-58
+Knock, knock, Neo. 🐇💊`;
+    }
+
+    // 21. Iron Man / Tony Stark Easter Egg
+    if (
+      clean.includes('ironman') ||
+      clean.includes('iron man') ||
+      clean.includes('tony stark') ||
+      clean.includes('protocol') ||
+      clean.includes('jarvis')
+    ) {
+      return `Protocol Mark 85 Initialized.
+Arc reactor output: 100% capacity.
+Repulsors: Online.
+F.R.I.D.A.Y.: "At your service, boss. Sometimes you gotta run before you can walk." — Tony Stark.`;
+    }
+
+    // 22. Coffee Easter Egg
+    if (clean === 'coffee' || clean.includes('brew') || clean.includes('caffeine')) {
+      return `☕ Fresh developer roast brewed!
+[████████████████] 100%
+Converting caffeine directly into clean TypeScript and resilient SQL queries... Complete.`;
+    }
+
+    // 23. Programmer Jokes
+    if (clean === 'joke' || clean.includes('funny') || clean.includes('tell me a joke')) {
+      const jokes = [
+        "Why do programmers prefer dark mode? Because light attracts bugs! 🪲 (And because TSakaneOS looks much cooler in midnight cyan).",
+        "There are only 10 types of people in the world: those who understand binary, and those who don't.",
+        "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?'",
+        "Why did the developer go broke? Because he used up all his cache!",
+        "Why do Java programmers wear glasses? Because they don't C#!",
+      ];
+      return jokes[Math.floor(Math.random() * jokes.length)];
+    }
+
+    // 24. Tech Quotes
+    if (clean === 'quote' || clean.includes('inspiration')) {
+      const quotes = [
+        "\"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.\" — Martin Fowler",
+        "\"First, solve the problem. Then, write the code.\" — John Johnson",
+        "\"Simplicity is prerequisite for reliability.\" — Edsger W. Dijkstra",
+        "\"The best error message is the one that never shows up.\" — Thomas Fuchs",
+        "\"Make it work, make it right, make it fast.\" — Kent Beck",
+      ];
+      return quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    // 25. Roll Dice
+    if (clean === 'roll' || clean === 'roll-dice' || clean === 'dice') {
+      const roll = Math.floor(Math.random() * 20) + 1;
+      if (roll === 20) {
+        return `🎲 Rolling d20... Result: [ 20 ] - NATURAL 20! Critical success on hiring Tsakane. All team velocity metrics increase with advantage!`;
+      }
+      if (roll === 1) {
+        return `🎲 Rolling d20... Result: [ 1 ] - Critical miss! You accidentally closed the tab without bookmarking Tsakane's CV. Quick, click 'View CV' before it's too late!`;
+      }
+      return `🎲 Rolling d20... Result: [ ${roll} ]. Successful check! Difficulty Class passed. Tsakane is ready for your team.`;
     }
 
     // Default intelligent fallback
-    return `Regarding "${rawInput}": Tsakane Sithole is an Information Systems honours graduate with digital banking operations experience at Metbank. He specializes in building practical software, AI automation, and secure enterprise IT systems. Try asking 'Who made you?', 'How do you work?', or type 'help' for suggested commands!`;
+    return `Regarding "${rawInput}": Tsakane Sithole is an Information Systems honours graduate with digital banking operations experience at Metbank. He specializes in building practical software, AI automation, and secure enterprise IT systems.\n\n💡 Tip: Type 'help' to see the full list of interactive commands and Easter eggs!`;
   };
 
   const handleSend = (questionText?: string) => {
