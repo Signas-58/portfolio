@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import {
   Terminal,
@@ -19,6 +19,21 @@ interface ChatMessage {
   text: string;
 }
 
+const developerJokes = [
+  "Why do programmers prefer dark mode? Because light attracts bugs! 🪲 (And because TSakaneOS looks much sharper in midnight cyan).",
+  "There are only 10 types of people in the world: those who understand binary, and those who don't.",
+  "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?'",
+  "Why did the developer go broke? Because he used up all his cache!",
+  "Why do Java programmers wear glasses? Because they don't C#!",
+  "A recruiter asks a candidate: 'What is your greatest strength?'\nCandidate: 'I'm great with recursion.'\nRecruiter: 'Can you give an example?'\nCandidate: 'A recruiter asks a candidate: What is your greatest strength?...",
+  "How many software engineers does it take to change a lightbulb?\nNone. That's a hardware issue.",
+  "A QA engineer walks into a bar:\n• Orders 1 beer\n• Orders 0 beers\n• Orders 999999999 beers\n• Orders a lizard\n• Orders -1 beers\n• Orders a NULL\nThe first real customer walks in and asks where the bathroom is. The entire bar catches fire.",
+  "\"Real programmers don't comment their code. If it was hard to write, it should be hard to understand!\"\n(Don't worry, Tsakane writes clean, fully documented architecture).",
+  "Why did the Python developer stay calm during the system crash?\nBecause they had exceptional handling!",
+  "An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, wine, liquor, cocktail lounge...",
+  "There's no place like 127.0.0.1... except maybe TSakaneOS at http://localhost:3000!"
+];
+
 export default function AILab() {
   const { isRecruiterMode } = useTheme();
 
@@ -33,6 +48,14 @@ export default function AILab() {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const jokeIndexRef = useRef(0);
+
+  const getNextJoke = () => {
+    const index = jokeIndexRef.current % developerJokes.length;
+    const joke = developerJokes[index];
+    jokeIndexRef.current = jokeIndexRef.current + 1;
+    return `[ JOKE ${index + 1}/${developerJokes.length} ]\n${joke}`;
+  };
 
   const promptChips = [
     'help',
@@ -102,8 +125,7 @@ Location       : Harare, Zimbabwe (CAT / UTC+2)`;
 • System Status : 100% Operational // 0 Active Incidents`;
     }
     if (clean === '8') {
-      return `[ 08 // PROGRAMMER JOKE ]
-Why do programmers prefer dark mode? Because light attracts bugs! 🪲 (And because TSakaneOS looks much cooler in midnight cyan).`;
+      return getNextJoke();
     }
     if (clean === '9') {
       return `[ 09 // THE MATRIX ]
@@ -414,16 +436,15 @@ F.R.I.D.A.Y.: "At your service, boss. Sometimes you gotta run before you can wal
 Converting caffeine directly into clean TypeScript and resilient SQL queries... Complete.`;
     }
 
-    // 23. Programmer Jokes
-    if (clean === 'joke' || clean.includes('funny') || clean.includes('tell me a joke')) {
-      const jokes = [
-        "Why do programmers prefer dark mode? Because light attracts bugs! 🪲 (And because TSakaneOS looks much cooler in midnight cyan).",
-        "There are only 10 types of people in the world: those who understand binary, and those who don't.",
-        "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?'",
-        "Why did the developer go broke? Because he used up all his cache!",
-        "Why do Java programmers wear glasses? Because they don't C#!",
-      ];
-      return jokes[Math.floor(Math.random() * jokes.length)];
+    // 23. Programmer Jokes (12 Alternating Jokes)
+    if (
+      clean === 'joke' ||
+      clean.includes('funny') ||
+      clean.includes('tell me a joke') ||
+      clean.includes('another joke') ||
+      clean.includes('jokes')
+    ) {
+      return getNextJoke();
     }
 
     // 24. Tech Quotes
