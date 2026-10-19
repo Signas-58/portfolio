@@ -155,27 +155,39 @@ export default function Hero() {
             <ArrowRight className="w-4 h-4" />
           </a>
 
-          <button
-            onClick={() => setIsCVModalOpen(true)}
+          <a
+            href="/Tsakane_Sithole_CV.pdf"
+            download="Stanford_Tsakane_Sithole_CV.pdf"
             className={`w-full sm:w-auto px-7 py-3 rounded-xl text-sm font-mono font-medium flex items-center justify-center gap-2 border transition-all duration-300 ${
               isRecruiterMode
-                ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'
+                ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300 shadow-sm'
                 : 'bg-slate-900/60 hover:bg-slate-800/80 text-slate-200 border-slate-700 hover:border-cyan-500/50'
             }`}
           >
             <Download className="w-4 h-4 text-cyan-400" />
-            <span>Download Curriculum Vitae</span>
+            <span>Download CV (PDF)</span>
+          </a>
+
+          <button
+            onClick={() => setIsCVModalOpen(true)}
+            className={`w-full sm:w-auto px-5 py-3 rounded-xl text-sm font-mono transition-colors ${
+              isRecruiterMode
+                ? 'text-blue-600 hover:text-blue-700'
+                : 'text-cyan-400 hover:text-cyan-300'
+            }`}
+          >
+            <span>Preview Online →</span>
           </button>
 
           <a
             href="#contact"
-            className={`w-full sm:w-auto px-6 py-3 rounded-xl text-sm font-mono transition-colors ${
+            className={`w-full sm:w-auto px-5 py-3 rounded-xl text-sm font-mono transition-colors ${
               isRecruiterMode
                 ? 'text-slate-600 hover:text-blue-600'
                 : 'text-slate-400 hover:text-cyan-400'
             }`}
           >
-            <span>Direct Inquiry →</span>
+            <span>Inquiry</span>
           </a>
         </motion.div>
 

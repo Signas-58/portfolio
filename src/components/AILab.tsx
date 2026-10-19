@@ -123,13 +123,14 @@ Tsakane graduated with a Bachelor of Commerce Honours in Information Systems fro
     }
     if (clean === '6' || clean === 'option 6' || clean === 'choice 6') {
       return `[ 06 // DIRECT CONTACT & HIRING CHANNELS ]
-You can reach Tsakane directly through:
+• Full Name    : Stanford Tsakane Sithole
+• Direct Cell  : +263 77 798 5546
 • Direct Email : tsakane.1578@gmail.com
 • Professional : linkedin.com/in/tsakane-sithole-b39276197
 • Telegram     : @Mxtaker (https://t.me/Mxtaker)
 • GitHub       : https://github.com/Signas-58
-• Portfolio    : https://tsakanesithole.co.zw
-Location       : Harare, Zimbabwe (CAT / UTC+2)`;
+• Official CV  : /Tsakane_Sithole_CV.pdf
+Location       : Harare & Gweru, Zimbabwe (CAT / UTC+2)`;
     }
     if (clean === '7') {
       return `[ 07 // SYSTEM TELEMETRY & SPECS ]
@@ -243,7 +244,7 @@ Knock, knock, Neo. 🐇💊`;
       clean.includes('bio') ||
       clean.includes('background')
     ) {
-      return "Tsakane Sithole is an Information Systems Honours graduate from Midlands State University (MSU) with enterprise banking experience at Metbank. He specializes in building intelligent systems, voice assistants (FRIDAY), algorithmic crypto trading (aegisBTC), and offline-first educational tools (DzidzaAI).";
+      return "Stanford Tsakane Sithole is an Information Systems Honours graduate (Upper Second Division - 2.1) from Midlands State University (MSU) with professional banking operations experience at Metbank (Digital Banking & Merchant Services). He specializes in digital channels management, POS operations, Kubernetes service continuity, data analytics, and intelligent systems (FRIDAY, aegisBTC, DzidzaAI).";
     }
 
     // 7. Education / Degree / University
@@ -257,7 +258,14 @@ Knock, knock, Neo. 🐇💊`;
       clean.includes('coursework') ||
       clean.includes('qualifications')
     ) {
-      return "Tsakane graduated with a Bachelor of Commerce Honours in Information Systems from Midlands State University (MSU). His core academic domains included Database Systems, Systems Analysis & Design, Information Security & Risk Management, Business Intelligence, and Software Project Management.";
+      return `[ ACADEMIC & CERTIFIED QUALIFICATIONS ]
+• Midlands State University (2021–2025):
+  Bachelor of Commerce Honours Degree in Information Systems (2.1 - Upper Second Division, Certificate #11812).
+• Thornhill High School (2019–2021):
+  ZIMSEC Advanced Level (Computer Science: C, Business Studies: C, Geography: B).
+• Ministry of Higher & Tertiary Education (2019):
+  National Foundation Certificate in Computer Operations & Packages.
+• Additional: Clean Class 4 driver's license.`;
     }
 
     // 8. Metbank / Professional Experience
@@ -272,7 +280,17 @@ Knock, knock, Neo. 🐇💊`;
       clean.includes('merchant') ||
       clean.includes('kubernetes')
     ) {
-      return "At Metbank, Tsakane worked within Digital Banking & Merchant Services. His responsibilities included supporting digital channels, POS merchant terminal diagnostics, monitoring Kubernetes-managed services, and ensuring transactional service continuity.";
+      return `[ METBANK EXPERIENCE // FEB 2024 – JAN 2025 ]
+Reporting to: Head of Digital Banking & Head of IT
+1. Digital Banking Officer:
+   • Managed daily operations across Mobile Banking, Internet Banking, USSD, and Online Portals.
+   • Frontline support resolving customer transaction failures, app exceptions, and login issues.
+   • Monitored containerized environments using Kubernetes; executed controlled service restarts.
+   • Championed digital account opening onboarding to cut branch congestion.
+2. Merchant Services Officer:
+   • Onboarded merchants onto POS terminals and electronic payment channels.
+   • Conducted hardware/network troubleshooting for device errors and connectivity failures.
+   • Monitored daily settlement cycles, reconciliation accuracy, and fraud/KYC compliance.`;
     }
 
     // 9. Projects / What has he built
@@ -367,10 +385,61 @@ Disciplined, fast-learning, and ready to make an immediate impact across Softwar
       clean.includes('telegram') ||
       clean.includes('message') ||
       clean.includes('phone') ||
+      clean.includes('cell') ||
+      clean.includes('call') ||
+      clean.includes('whatsapp') ||
       clean === 'how to hire' ||
       clean === 'hire'
     ) {
-      return "You can reach Tsakane directly through:\n• Email: tsakane.1578@gmail.com\n• LinkedIn: linkedin.com/in/tsakane-sithole-b39276197\n• Telegram: @Mxtaker (t.me/Mxtaker)\n• Portfolio: tsakanesithole.co.zw";
+      return `You can reach Stanford Tsakane Sithole directly through:
+• Cell / WhatsApp : +263 77 798 5546
+• Email           : tsakane.1578@gmail.com
+• LinkedIn        : linkedin.com/in/tsakane-sithole-b39276197
+• Telegram        : @Mxtaker (t.me/Mxtaker)
+• Location        : Harare & Gweru, Zimbabwe (CAT / UTC+2)
+• Official CV     : Download at /Tsakane_Sithole_CV.pdf`;
+    }
+
+    // 14b. Official CV Download
+    if (
+      clean === 'cv' ||
+      clean === 'resume' ||
+      clean.includes('cv') ||
+      clean.includes('resume') ||
+      clean.includes('curriculum vitae')
+    ) {
+      return `[ OFFICIAL CURRICULUM VITAE // STANFORD TSAKANE SITHOLE ]
+• Full Official Name : Stanford Tsakane Sithole
+• Qualifications     : BCom Honours Degree in Information Systems (2.1 - Upper Second), Midlands State University
+• Industry Role      : Digital Banking Officer & Merchant Services Officer (Metbank Limited)
+• Professional Referees: Mr. W. Chakanyuka (Head of Digital Banking), Mr. B. Dube (Metbank)
+
+📥 Download Tsakane's official signed 8-page CV (including verified certificates):
+/Tsakane_Sithole_CV.pdf
+
+Or click the "Download CV (PDF)" button at the top of the page!`;
+    }
+
+    // 14c. Professional References
+    if (
+      clean.includes('reference') ||
+      clean.includes('referee') ||
+      clean.includes('chakanyuka') ||
+      clean.includes('dube')
+    ) {
+      return `[ OFFICIAL PROFESSIONAL REFERENCES ]
+
+1. Mr. W. Chakanyuka
+   • Title : Head of Digital Banking
+   • Org   : Met Holdings / Metbank Limited
+   • Cell  : +263 77 288 7524
+   • Email : wchakanyuka@metholdings.co.zw
+
+2. Mr. B. Dube
+   • Title : Senior Official
+   • Org   : Metbank Limited
+   • Cell  : +263 77 269 9555
+   • Email : bdube@metbank.co.zw`;
     }
 
     // 15. Target Roles

@@ -60,14 +60,15 @@ export default function Experience() {
               </div>
               <div>
                 <h3 className="text-lg font-bold">
-                  Digital Banking & Merchant Services
+                  Digital Banking & Merchant Services Officer
                 </h3>
-                <p className="text-xs font-mono text-cyan-400">Metbank</p>
+                <p className="text-xs font-mono text-cyan-400">Metbank Limited • Harare, Zimbabwe</p>
+                <p className="text-[11px] text-slate-400">Reporting to: Head of Digital Banking & Head of IT</p>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+            <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400">
               <Calendar className="w-3.5 h-3.5" />
-              <span>Industry Experience</span>
+              <span>Feb 2024 – Jan 2025</span>
             </div>
           </div>
 
@@ -147,16 +148,17 @@ export default function Experience() {
                   BCom Honours in Information Systems
                 </h3>
                 <p className="text-xs font-mono text-cyan-400">Midlands State University (MSU)</p>
+                <p className="text-[11px] text-emerald-400 font-semibold">Upper Second Division (2.1) • Cert #11812</p>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+            <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400">
               <Award className="w-3.5 h-3.5" />
-              <span>Honours Degree</span>
+              <span>2021 – 2025</span>
             </div>
           </div>
 
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Four-year comprehensive degree covering enterprise information systems, database architectures, software engineering methodologies, information security, and IT project management.
+            Four-year comprehensive degree (Faculty of Business Sciences) covering enterprise database architectures, systems analysis, cyber risk governance, data analytics, and software project management.
           </p>
 
           <div className="space-y-3">

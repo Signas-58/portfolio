@@ -10,7 +10,8 @@ import {
   Globe,
   CheckCircle2,
   MapPin,
-  Clock
+  Clock,
+  Phone
 } from 'lucide-react';
 
 export default function Contact() {
@@ -39,6 +40,12 @@ export default function Contact() {
       icon: Mail,
     },
     {
+      label: 'Direct Cell / WhatsApp',
+      value: '+263 77 798 5546',
+      href: 'tel:+263777985546',
+      icon: Phone,
+    },
+    {
       label: 'Professional Network',
       value: 'linkedin.com/in/tsakane-sithole-b39276197',
       href: 'https://www.linkedin.com/in/tsakane-sithole-b39276197',
@@ -58,7 +65,7 @@ export default function Contact() {
     },
     {
       label: 'Location & Timezone',
-      value: 'Harare, Zimbabwe (CAT / UTC+2)',
+      value: 'Harare & Gweru, Zimbabwe (CAT / UTC+2)',
       href: '#',
       icon: MapPin,
     },

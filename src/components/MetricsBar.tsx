@@ -11,14 +11,14 @@ export default function MetricsBar() {
     {
       icon: GraduationCap,
       label: 'Academic Qualification',
-      value: 'BCom Honours',
-      sub: 'Information Systems, MSU',
+      value: 'BCom Hons (2.1)',
+      sub: 'Upper Second • MSU (2021–2025)',
     },
     {
       icon: Building2,
       label: 'Industry Experience',
-      value: 'Metbank Digital',
-      sub: 'Banking & Merchant Channels',
+      value: 'Metbank Limited',
+      sub: 'Digital Banking (Feb 2024–Jan 2025)',
     },
     {
       icon: Layers,
