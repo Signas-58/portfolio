@@ -9,8 +9,9 @@ import {
   Bot,
   User,
   ShieldCheck,
-  RefreshCw,
-  Cpu
+  RotateCcw,
+  Clock,
+  HelpCircle
 } from 'lucide-react';
 
 interface ChatMessage {
@@ -22,73 +23,271 @@ export default function AILab() {
   const { isRecruiterMode } = useTheme();
 
   const [input, setInput] = useState('');
+  const initialGreeting =
+    "Greetings! I am F.R.I.D.A.Y., Tsakane's interactive portfolio assistant. You can ask me practical questions like 'Who made you?', 'How do you work?', 'What time is it?', or explore Tsakane's education, Metbank experience, and engineering projects.";
+
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       sender: 'ai',
-      text: "Greetings. I am FRIDAY, Tsakane's interactive portfolio assistant. Ask me anything about his Information Systems degree, Metbank digital banking experience, or technical projects.",
+      text: initialGreeting,
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [queriesLeft, setQueriesLeft] = useState(5);
 
   const promptChips = [
-    "What is Tsakane's technical background?",
-    "Tell me about his Metbank experience",
-    "How does DzidzaAI operate offline?",
-    "What roles is he currently targeting?",
+    'Who made you?',
+    'How do you work?',
+    'What time is it?',
+    'About Tsakane',
+    'Metbank experience',
+    'Featured projects',
+    'Contact info',
   ];
 
-  const knowledgeBase: Record<string, string> = {
-    background:
-      "Tsakane holds a BCom Honours in Information Systems from Midlands State University (MSU). His core competencies include IT systems support, SQL data analytics, network troubleshooting, and AI automation.",
-    metbank:
-      "At Metbank, Tsakane worked within Digital Banking & Merchant Services. He supported digital banking channels, point-of-sale (POS) merchant terminals, monitored Kubernetes-managed services, and assisted with incident diagnostics.",
-    dzidza:
-      "DzidzaAI is an offline-first learning platform tailored for primary learners in low-connectivity areas across Zimbabwe. It caches content locally using SQLite/IndexedDB and provides multilingual guidance in English, Shona, and Ndebele.",
-    roles:
-      "Tsakane is actively seeking opportunities as an ICT Graduate Trainee, Systems Support Engineer, Data/BI Analyst, Junior Cybersecurity Analyst, or AI Integration Engineer.",
-    aegis:
-      "aegisBTC is Tsakane's quantitative crypto trading automation system built in Python and MetaTrader 5 (MT5), focusing on automated execution, arbitrage, and strict drawdown risk control.",
-    contact:
-      "You can reach Tsakane directly at tsakane.1578@gmail.com, connect on LinkedIn at https://www.linkedin.com/in/tsakane-sithole-b39276197, or message on Telegram @Mxtaker.",
+  // Practical Answer Resolver
+  const resolveAnswer = (rawInput: string): string => {
+    const clean = rawInput
+      .toLowerCase()
+      .replace(/[?!.,;]/g, '')
+      .trim();
+
+    // 1. Greetings
+    if (
+      clean === 'hi' ||
+      clean === 'hello' ||
+      clean === 'hey' ||
+      clean === 'hi there' ||
+      clean === 'hey there' ||
+      clean === 'hola' ||
+      clean === 'yo' ||
+      clean === 'sup' ||
+      clean.startsWith('good morning') ||
+      clean.startsWith('good afternoon') ||
+      clean.startsWith('good evening') ||
+      clean === 'how are you' ||
+      clean === 'how are u'
+    ) {
+      return "Hello! I am F.R.I.D.A.Y., Tsakane's assistant. Ready to help you explore his Information Systems degree, Metbank banking background, or technical projects like aegisBTC and DzidzaAI. What would you like to know?";
+    }
+
+    // 2. Who/What are you
+    if (
+      clean.includes('who are you') ||
+      clean.includes('what are you') ||
+      clean.includes('who are u') ||
+      clean.includes('what are u') ||
+      clean.includes('who is friday') ||
+      clean.includes('what is friday')
+    ) {
+      return "I am F.R.I.D.A.Y. (Female Replacement Intelligent Digital Assistant Youth), inspired by Tony Stark's autonomous AI interface. Within TSakaneOS, I serve as Tsakane's interactive portfolio navigator, knowledge assistant, and system terminal.";
+    }
+
+    // 3. Who made you / Creator
+    if (
+      clean.includes('who made you') ||
+      clean.includes('who created you') ||
+      clean.includes('who built you') ||
+      clean.includes('who coded you') ||
+      clean.includes('who is your creator') ||
+      clean.includes('who programmed you') ||
+      clean.includes('who owns you')
+    ) {
+      return "I was designed, programmed, and engineered by Tsakane Sithole as part of his research into autonomous voice assistants, speech synthesis, and intelligent automation systems.";
+    }
+
+    // 4. How do you work / How were you made
+    if (
+      clean.includes('how do you work') ||
+      clean.includes('how does it work') ||
+      clean.includes('how were you made') ||
+      clean.includes('how where you made') ||
+      clean.includes('how were u made') ||
+      clean.includes('how are you built') ||
+      clean.includes('how was friday built') ||
+      clean.includes('how are you made')
+    ) {
+      return "The full FRIDAY engine is engineered in Python 3.11 with a modular pipeline:\n1. Audio Capture with Voice Activity Detection (VAD)\n2. Local Speech-to-Text via Whisper\n3. Intent Routing & LLM Reasoning Engine\n4. System Automation Tools (OS commands, scripts, API execution)\n5. Voice Output Synthesis (TTS).\nThis web terminal is a lightweight browser-based simulation demonstrating my intent parsing engine in real time!";
+    }
+
+    // 5. Time & Date
+    if (
+      clean.includes('time') ||
+      clean.includes('what time') ||
+      clean.includes('date') ||
+      clean.includes('what date') ||
+      clean.includes('today') ||
+      clean.includes('what day')
+    ) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
+      const dateStr = now.toLocaleDateString([], {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      return `The current local system time is ${timeStr} on ${dateStr}. System telemetry in Harare, Zimbabwe (CAT / UTC+2) is nominal.`;
+    }
+
+    // 6. About Tsakane / About me / Who is Tsakane
+    if (
+      clean.includes('about me') ||
+      clean.includes('about tsakane') ||
+      clean.includes('who is tsakane') ||
+      clean.includes('tell me about tsakane') ||
+      clean.includes('who is he') ||
+      clean.includes('bio') ||
+      clean.includes('background')
+    ) {
+      return "Tsakane Sithole is an Information Systems Honours graduate from Midlands State University (MSU) with enterprise banking experience at Metbank. He specializes in building intelligent systems, voice assistants (FRIDAY), algorithmic crypto trading (aegisBTC), and offline-first educational tools (DzidzaAI).";
+    }
+
+    // 7. Education / Degree / University
+    if (
+      clean.includes('education') ||
+      clean.includes('degree') ||
+      clean.includes('university') ||
+      clean.includes('msu') ||
+      clean.includes('midlands state university') ||
+      clean.includes('honours') ||
+      clean.includes('coursework') ||
+      clean.includes('qualifications')
+    ) {
+      return "Tsakane graduated with a Bachelor of Commerce Honours in Information Systems from Midlands State University (MSU). His core academic domains included Database Systems, Systems Analysis & Design, Information Security & Risk Management, Business Intelligence, and Software Project Management.";
+    }
+
+    // 8. Metbank / Professional Experience
+    if (
+      clean.includes('metbank') ||
+      clean.includes('banking') ||
+      clean.includes('bank') ||
+      clean.includes('work') ||
+      clean.includes('job') ||
+      clean.includes('experience') ||
+      clean.includes('pos') ||
+      clean.includes('merchant') ||
+      clean.includes('kubernetes')
+    ) {
+      return "At Metbank, Tsakane worked within Digital Banking & Merchant Services. His responsibilities included supporting digital channels, POS merchant terminal diagnostics, monitoring Kubernetes-managed services, and ensuring transactional service continuity.";
+    }
+
+    // 9. Projects / What has he built
+    if (
+      clean.includes('project') ||
+      clean.includes('what did he build') ||
+      clean.includes('what has he built') ||
+      clean.includes('portfolio') ||
+      clean.includes('systems')
+    ) {
+      return "Tsakane's featured projects include:\n• FRIDAY: Voice-Activated AI Assistant (Python)\n• aegisBTC: Algorithmic & Crypto Trading Automation (Python & MT5)\n• DzidzaAI: Offline-First Multilingual Primary Learning Platform for Zimbabwe\n• Campus Safety Alert System: Real-Time Incident Reporting (MSU)\n• Banking Operations Analytics Dashboard: Synthetic POS & transaction throughput telemetry.";
+    }
+
+    // 10. aegisBTC / Trading
+    if (
+      clean.includes('aegis') ||
+      clean.includes('trading') ||
+      clean.includes('crypto') ||
+      clean.includes('arbitrage') ||
+      clean.includes('mt5') ||
+      clean.includes('bitcoin') ||
+      clean.includes('btc')
+    ) {
+      return "aegisBTC is Tsakane's quantitative algorithmic trading framework built with Python and MetaTrader 5 (MT5). It automates market order execution, crypto arbitrage, trailing stop-losses, and historical strategy backtesting.";
+    }
+
+    // 11. DzidzaAI
+    if (
+      clean.includes('dzidza') ||
+      clean.includes('offline') ||
+      clean.includes('school') ||
+      clean.includes('primary') ||
+      clean.includes('learning')
+    ) {
+      return "DzidzaAI is an offline-first learning platform tailored for primary learners in low-connectivity areas across Zimbabwe. It caches content locally using SQLite/IndexedDB and provides multilingual guidance in English, Shona, and Ndebele.";
+    }
+
+    // 12. Skills / Tech stack
+    if (
+      clean.includes('skill') ||
+      clean.includes('stack') ||
+      clean.includes('technologies') ||
+      clean.includes('language') ||
+      clean.includes('python') ||
+      clean.includes('sql') ||
+      clean.includes('tools')
+    ) {
+      return "Tsakane's core technical stack includes:\n• Languages: Python, SQL, JavaScript, TypeScript, HTML5/CSS3, Bash\n• Databases: PostgreSQL, MySQL, SQLite, MongoDB\n• Infrastructure: Linux Administration, Kubernetes monitoring, Docker, Git/GitHub\n• Applied Focus: AI Integration, Financial IT Operations, and Data Analytics.";
+    }
+
+    // 13. Contact / Hiring / Email
+    if (
+      clean.includes('contact') ||
+      clean.includes('email') ||
+      clean.includes('reach') ||
+      clean.includes('hire') ||
+      clean.includes('linkedin') ||
+      clean.includes('telegram') ||
+      clean.includes('message')
+    ) {
+      return "You can reach Tsakane directly through:\n• Email: tsakane.1578@gmail.com\n• LinkedIn: linkedin.com/in/tsakane-sithole-b39276197\n• Telegram: @Mxtaker (t.me/Mxtaker)\n• Portfolio: tsakanesithole.co.zw";
+    }
+
+    // 14. Target Roles
+    if (
+      clean.includes('role') ||
+      clean.includes('career') ||
+      clean.includes('target') ||
+      clean.includes('looking for') ||
+      clean.includes('hire')
+    ) {
+      return "Tsakane is actively seeking opportunities as an ICT Graduate Trainee, Systems Support Engineer, Data & BI Analyst, Junior Cybersecurity Analyst, or AI Integration Engineer.";
+    }
+
+    // 15. Help / Commands
+    if (
+      clean.includes('help') ||
+      clean.includes('command') ||
+      clean.includes('menu') ||
+      clean.includes('what can i ask')
+    ) {
+      return "Here are some questions you can ask me:\n• 'Who made you?' or 'How do you work?'\n• 'What time is it?' or 'What is the date?'\n• 'Who is Tsakane?' or 'What is his education?'\n• 'Tell me about his Metbank experience'\n• 'What projects has he built?'\n• 'Tell me about FRIDAY or aegisBTC'\n• 'How can I contact him?'";
+    }
+
+    // Default intelligent fallback
+    return `Regarding "${rawInput}": Tsakane Sithole is an Information Systems honours graduate with digital banking operations experience at Metbank. He specializes in building practical software, AI automation, and secure enterprise IT systems. Try asking 'Who made you?', 'How do you work?', or type 'help' for suggested commands!`;
   };
 
   const handleSend = (questionText?: string) => {
     const textToSend = questionText || input;
-    if (!textToSend.trim() || queriesLeft <= 0 || isTyping) return;
+    if (!textToSend.trim() || isTyping) return;
+
+    // Reset command
+    if (textToSend.trim().toLowerCase() === 'clear' || textToSend.trim().toLowerCase() === 'reset') {
+      setMessages([{ sender: 'ai', text: initialGreeting }]);
+      setInput('');
+      return;
+    }
 
     const userMsg: ChatMessage = { sender: 'user', text: textToSend };
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setIsTyping(true);
-    setQueriesLeft((prev) => Math.max(0, prev - 1));
 
-    // Simulate response
+    // Realistic response delay
     setTimeout(() => {
-      const lower = textToSend.toLowerCase();
-      let reply =
-        "Tsakane Sithole is an Information Systems honours graduate with digital banking operations experience at Metbank. He specializes in building practical software, AI automation, and secure enterprise IT systems.";
-
-      if (lower.includes('background') || lower.includes('degree') || lower.includes('university') || lower.includes('msu')) {
-        reply = knowledgeBase.background;
-      } else if (lower.includes('metbank') || lower.includes('banking') || lower.includes('bank') || lower.includes('work')) {
-        reply = knowledgeBase.metbank;
-      } else if (lower.includes('dzidza') || lower.includes('offline') || lower.includes('school')) {
-        reply = knowledgeBase.dzidza;
-      } else if (lower.includes('role') || lower.includes('job') || lower.includes('career') || lower.includes('hire') || lower.includes('target')) {
-        reply = knowledgeBase.roles;
-      } else if (lower.includes('aegis') || lower.includes('trading') || lower.includes('crypto')) {
-        reply = knowledgeBase.aegis;
-      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('reach') || lower.includes('linkedin') || lower.includes('telegram')) {
-        reply = knowledgeBase.contact;
-      } else if (lower.includes('friday') || lower.includes('voice')) {
-        reply =
-          "FRIDAY is Tsakane's voice-activated personal assistant built in Python. It integrates speech recognition, system tool calling, and local LLM pipelines for hands-free workflow automation.";
-      }
-
+      const reply = resolveAnswer(textToSend);
       setMessages((prev) => [...prev, { sender: 'ai', text: reply }]);
       setIsTyping(false);
-    }, 700);
+    }, 450);
+  };
+
+  const handleReset = () => {
+    setMessages([{ sender: 'ai', text: initialGreeting }]);
+    setInput('');
   };
 
   return (
@@ -109,7 +308,7 @@ export default function AILab() {
             isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
           }`}
         >
-          An interactive demo preview of FRIDAY's reasoning engine. Query verified information about Tsakane's qualifications, experience, and projects.
+          An interactive demo preview of FRIDAY's intent engine. Ask common practical questions (*&quot;Who made you?&quot;*, *&quot;What time is it?&quot;*, *&quot;How do you work?&quot;*) or query Tsakane&apos;s background.
         </p>
       </div>
 
@@ -133,31 +332,42 @@ export default function AILab() {
             <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <span className="w-3 h-3 rounded-full bg-green-500/80" />
             <span className="ml-2 font-semibold">
-              FRIDAY_TERMINAL // LLM_SANDBOX v1.4
+              FRIDAY_TERMINAL // INTENT_ENGINE v2.0
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="text-slate-400">Guardrails: Active ({queriesLeft}/5 Queries)</span>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleReset}
+              className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-cyan-400 transition-colors"
+              title="Reset Terminal Session"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset</span>
+            </button>
+            <div className="flex items-center gap-1.5 text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px]">System Online</span>
+            </div>
           </div>
         </div>
 
-        {/* Suggested Prompt Chips */}
+        {/* Suggested Practical Prompt Chips */}
         <div
-          className={`px-5 py-3 border-b flex flex-wrap gap-2 text-xs font-mono ${
+          className={`px-5 py-3 border-b flex flex-wrap items-center gap-2 text-xs font-mono ${
             isRecruiterMode ? 'bg-slate-50 border-slate-200' : 'bg-slate-950/40 border-slate-800'
           }`}
         >
-          <span className="text-slate-400 py-1">Quick prompts:</span>
+          <span className="text-slate-400 py-1">Try asking:</span>
           {promptChips.map((chip, i) => (
             <button
               key={i}
               onClick={() => handleSend(chip)}
-              disabled={queriesLeft <= 0 || isTyping}
-              className={`px-3 py-1 rounded-md border transition-colors ${
+              disabled={isTyping}
+              className={`px-3 py-1 rounded-md border transition-all ${
                 isRecruiterMode
                   ? 'bg-white border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600'
-                  : 'bg-cyan-950/30 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40'
+                  : 'bg-cyan-950/30 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40 hover:shadow-[0_0_10px_rgba(0,243,255,0.2)]'
               }`}
             >
               {chip}
@@ -166,7 +376,7 @@ export default function AILab() {
         </div>
 
         {/* Chat History Log */}
-        <div className="p-5 sm:p-6 min-h-[260px] max-h-[420px] overflow-y-auto space-y-4">
+        <div className="p-5 sm:p-6 min-h-[280px] max-h-[460px] overflow-y-auto space-y-4">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -186,7 +396,7 @@ export default function AILab() {
                 </div>
               )}
               <div
-                className={`max-w-[85%] sm:max-w-[75%] p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed ${
+                className={`max-w-[85%] sm:max-w-[78%] p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed whitespace-pre-line ${
                   msg.sender === 'user'
                     ? isRecruiterMode
                       ? 'bg-blue-600 text-white rounded-tr-none'
@@ -218,7 +428,7 @@ export default function AILab() {
                 <Bot className="w-4 h-4 animate-spin" />
               </div>
               <div className="px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-xs font-mono text-cyan-400 flex items-center gap-1.5">
-                <span>FRIDAY is analyzing query context</span>
+                <span>FRIDAY is processing query</span>
                 <span className="animate-pulse">...</span>
               </div>
             </div>
@@ -237,12 +447,8 @@ export default function AILab() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder={
-                queriesLeft > 0
-                  ? "Ask FRIDAY about Tsakane's stack, education, or banking experience..."
-                  : "Session query limit reached (5/5). Reload to restart."
-              }
-              disabled={queriesLeft <= 0 || isTyping}
+              placeholder="Ask FRIDAY: 'Who made you?', 'How do you work?', 'What time is it?', or about Metbank..."
+              disabled={isTyping}
               className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono border focus:outline-none transition-colors ${
                 isRecruiterMode
                   ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
@@ -253,7 +459,7 @@ export default function AILab() {
 
           <button
             onClick={() => handleSend()}
-            disabled={!input.trim() || queriesLeft <= 0 || isTyping}
+            disabled={!input.trim() || isTyping}
             className={`px-4 py-2.5 rounded-xl text-xs font-mono font-medium flex items-center gap-2 transition-all ${
               isRecruiterMode
                 ? 'bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white'
