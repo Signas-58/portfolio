@@ -78,10 +78,25 @@ export default function AILab() {
 
     // Numeric Shortcuts (1 through 9)
     if (clean === '1') {
-      return `[ 01 // WHY HIRE TSAKANE ]
-1. The Rare Hybrid: A strong BCom Honours in Information Systems combined with enterprise banking operations at Metbank — bridging business strategy, data integrity, and tech.
-2. Proven Builder: He doesn't just read documentation; he builds real software — voice assistants in Python, offline-first educational PWAs with SQLite, and algorithmic trading systems with MT5.
-3. Reliability & Systems Discipline: Hands-on exposure monitoring Kubernetes microservices, diagnosing POS terminal anomalies, and maintaining uptime in high-stakes environments.`;
+      return `[ 01 // WHY HIRE TSAKANE SITHOLE ]
+
+1. The Rare Business & Tech Hybrid
+Holds a BCom Honours in Information Systems from Midlands State University (MSU) paired with digital banking operations at Metbank — bridging business intelligence, system architecture, and risk management.
+
+2. A Proven, Pragmatic Builder
+He doesn't just read documentation; he builds end-to-end resilient software:
+• F.R.I.D.A.Y. — Autonomous voice-activated AI assistant in Python
+• aegisBTC — Algorithmic trading & MT5 arbitrage automation engine
+• DzidzaAI — Offline-first multilingual educational PWA for Zimbabwean primary schools
+• Campus Safety Alert — Real-time emergency escalation system for MSU
+
+3. Enterprise Production Rigor
+Trained in high-stakes banking environments: monitoring Kubernetes microservices, diagnosing POS terminal anomalies, analyzing SQL transaction pipelines, and ensuring 99.9% uptime.
+
+4. Adaptable & High-Velocity Learner
+Disciplined, fast-learning, and ready to make an immediate impact across Software Engineering, Systems Support, or Cloud/DevOps teams.
+
+💡 Direct contact: tsakane.1578@gmail.com | Telegram: @Mxtaker`;
     }
     if (clean === '2') {
       return `[ 02 // METBANK DIGITAL BANKING EXPERIENCE ]
@@ -308,31 +323,69 @@ Knock, knock, Neo. 🐇💊`;
       return "Tsakane's core technical stack includes:\n• Languages: Python, SQL, JavaScript, TypeScript, HTML5/CSS3, Bash\n• Databases: PostgreSQL, MySQL, SQLite, MongoDB\n• Infrastructure: Linux Administration, Kubernetes monitoring, Docker, Git/GitHub\n• Applied Focus: AI Integration, Financial IT Operations, and Data Analytics.";
     }
 
-    // 13. Contact / Hiring / Email
+    // 13. Why Hire Tsakane / Candidate Value Proposition
+    if (
+      clean === 'why-hire' ||
+      clean === 'why hire' ||
+      clean.includes('why-hire') ||
+      clean.includes('why hire') ||
+      clean.includes('why should we hire') ||
+      clean.includes('why should i hire') ||
+      clean.includes('reasons to hire') ||
+      clean.includes('why tsakane') ||
+      clean.includes('why you') ||
+      clean === 'why' ||
+      clean === 'hire him'
+    ) {
+      return `[ TOP 4 REASONS TO HIRE TSAKANE SITHOLE ]
+
+1. The Rare Business & Tech Hybrid
+Holds a BCom Honours in Information Systems from Midlands State University (MSU) combined with digital banking operations at Metbank — bridging business intelligence, system architecture, and risk management.
+
+2. A Proven, Pragmatic Builder
+He doesn't just read documentation; he builds end-to-end resilient software:
+• F.R.I.D.A.Y. — Autonomous voice-activated AI assistant in Python
+• aegisBTC — Algorithmic trading & MT5 arbitrage automation engine
+• DzidzaAI — Offline-first multilingual educational PWA for Zimbabwean primary schools
+• Campus Safety Alert — Real-time emergency escalation system for MSU
+
+3. Enterprise Production Rigor
+Trained in high-stakes banking environments: monitoring Kubernetes microservices, diagnosing POS terminal anomalies, analyzing SQL transaction pipelines, and ensuring 99.9% uptime.
+
+4. Adaptable & High-Velocity Learner
+Disciplined, fast-learning, and ready to make an immediate impact across Software Engineering, Systems Support, or Cloud/DevOps teams.
+
+💡 Direct contact: tsakane.1578@gmail.com | Telegram: @Mxtaker`;
+    }
+
+    // 14. Contact / Channels
     if (
       clean.includes('contact') ||
       clean.includes('email') ||
       clean.includes('reach') ||
-      clean.includes('hire') ||
       clean.includes('linkedin') ||
       clean.includes('telegram') ||
-      clean.includes('message')
+      clean.includes('message') ||
+      clean.includes('phone') ||
+      clean === 'how to hire' ||
+      clean === 'hire'
     ) {
       return "You can reach Tsakane directly through:\n• Email: tsakane.1578@gmail.com\n• LinkedIn: linkedin.com/in/tsakane-sithole-b39276197\n• Telegram: @Mxtaker (t.me/Mxtaker)\n• Portfolio: tsakanesithole.co.zw";
     }
 
-    // 14. Target Roles
+    // 15. Target Roles
     if (
       clean.includes('role') ||
       clean.includes('career') ||
       clean.includes('target') ||
       clean.includes('looking for') ||
-      clean.includes('hire')
+      clean.includes('open to') ||
+      clean.includes('opportunities')
     ) {
       return "Tsakane is actively seeking opportunities as an ICT Graduate Trainee, Systems Support Engineer, Data & BI Analyst, Junior Cybersecurity Analyst, or AI Integration Engineer.";
     }
 
-    // 15. Help / Command Menu
+    // 16. Help / Command Menu
     if (
       clean === 'help' ||
       clean === 'commands' ||
@@ -346,7 +399,7 @@ Knock, knock, Neo. 🐇💊`;
 ========================================
 
 [ QUICK SHORTCUTS — TYPE 1 TO 9 ]
-  [1] why-hire    : Top 3 compelling reasons to hire Tsakane
+  [1] why-hire    : Top compelling reasons to hire Tsakane
   [2] experience  : Metbank digital banking & Kubernetes ops
   [3] education   : BCom Honours (MSU) & academic coursework
   [4] projects    : Overview of all 6 engineered systems
@@ -374,14 +427,6 @@ Knock, knock, Neo. 🐇💊`;
   • Reset         : Type 'reset' or click the top-right button anytime
 
 💡 Tip: Type any command name or simply enter a number [1] through [9]!`;
-    }
-
-    // 16. Why Hire Tsakane
-    if (clean.includes('why-hire') || clean.includes('why hire') || clean.includes('why should we hire')) {
-      return `TOP 3 REASONS TO HIRE TSAKANE:
-1. The Rare Hybrid: A strong BCom Honours in Information Systems combined with enterprise banking operations at Metbank — bridging business strategy, data integrity, and tech.
-2. Proven Builder: He doesn't just read documentation; he builds real software — voice assistants in Python, offline-first educational PWAs with SQLite, and algorithmic trading systems with MT5.
-3. Reliability & Systems Discipline: Hands-on exposure monitoring Kubernetes microservices, diagnosing POS terminal anomalies, and maintaining uptime in high-stakes environments.`;
     }
 
     // 17. System Info & Diagnostics
