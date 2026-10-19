@@ -52,6 +52,67 @@ export default function AILab() {
       .replace(/[?!.,;]/g, '')
       .trim();
 
+    // Numeric Shortcuts (1 through 9)
+    if (clean === '1') {
+      return `[ 01 // WHY HIRE TSAKANE ]
+1. The Rare Hybrid: A strong BCom Honours in Information Systems combined with enterprise banking operations at Metbank — bridging business strategy, data integrity, and tech.
+2. Proven Builder: He doesn't just read documentation; he builds real software — voice assistants in Python, offline-first educational PWAs with SQLite, and algorithmic trading systems with MT5.
+3. Reliability & Systems Discipline: Hands-on exposure monitoring Kubernetes microservices, diagnosing POS terminal anomalies, and maintaining uptime in high-stakes environments.`;
+    }
+    if (clean === '2') {
+      return `[ 02 // METBANK DIGITAL BANKING EXPERIENCE ]
+At Metbank, Tsakane worked within Digital Banking & Merchant Services. His responsibilities included supporting digital channels, POS merchant terminal diagnostics, monitoring Kubernetes-managed services, and ensuring transactional service continuity.`;
+    }
+    if (clean === '3') {
+      return `[ 03 // EDUCATION & QUALIFICATIONS ]
+Tsakane graduated with a Bachelor of Commerce Honours in Information Systems from Midlands State University (MSU). His core academic domains included Database Systems, Systems Analysis & Design, Information Security & Risk Management, Business Intelligence, and Software Project Management.`;
+    }
+    if (clean === '4') {
+      return `[ 04 // FEATURED SYSTEMS & PROJECTS ]
+• FRIDAY: Voice-Activated AI Assistant (Python)
+• aegisBTC: Algorithmic & Crypto Trading Automation Engine (Python & MT5)
+• DzidzaAI: Offline-First Multilingual Primary Learning Platform for Zimbabwe
+• Campus Safety Alert System: Real-Time Incident Reporting for MSU
+• Banking Operations Analytics Dashboard: Synthetic POS & transaction throughput telemetry.`;
+    }
+    if (clean === '5') {
+      return `[ 05 // TECHNICAL STACK & PROFICIENCIES ]
+• Languages: Python, SQL, JavaScript, TypeScript, HTML5/CSS3, Bash
+• Databases: PostgreSQL, MySQL, SQLite, MongoDB
+• Infrastructure: Linux Administration, Kubernetes monitoring, Docker, Git/GitHub
+• Applied Focus: AI Integration, Financial IT Operations, and Data Analytics.`;
+    }
+    if (clean === '6' || clean === 'option 6' || clean === 'choice 6') {
+      return `[ 06 // DIRECT CONTACT & HIRING CHANNELS ]
+You can reach Tsakane directly through:
+• Direct Email : tsakane.1578@gmail.com
+• Professional : linkedin.com/in/tsakane-sithole-b39276197
+• Telegram     : @Mxtaker (https://t.me/Mxtaker)
+• GitHub       : https://github.com/Signas-58
+• Portfolio    : https://tsakanesithole.co.zw
+Location       : Harare, Zimbabwe (CAT / UTC+2)`;
+    }
+    if (clean === '7') {
+      return `[ 07 // SYSTEM TELEMETRY & SPECS ]
+• Host Platform : Next.js 16.4 App Router (Turbopack)
+• Client Engine : React 19 + TypeScript
+• Deployment   : Vercel Global Edge Network
+• Timezone      : Harare, Zimbabwe (CAT / UTC+2)
+• Interface     : Dual-Theme (Dev Cyber HUD / Recruiter View)
+• System Status : 100% Operational // 0 Active Incidents`;
+    }
+    if (clean === '8') {
+      return `[ 08 // PROGRAMMER JOKE ]
+Why do programmers prefer dark mode? Because light attracts bugs! 🪲 (And because TSakaneOS looks much cooler in midnight cyan).`;
+    }
+    if (clean === '9') {
+      return `[ 09 // THE MATRIX ]
+Wake up, Recruiter...
+The Matrix has you.
+Follow the white rabbit: https://github.com/Signas-58
+Knock, knock, Neo. 🐇💊`;
+    }
+
     // 1. Greetings
     if (
       clean === 'hi' ||
@@ -261,36 +322,30 @@ export default function AILab() {
     FRIDAY SYSTEM MANUAL // COMMAND INDEX
 ========================================
 
-[ RECRUITER & CAREER SUITE ]
-• why-hire    : Top 3 compelling reasons to hire Tsakane
-• experience  : Metbank digital banking & Kubernetes ops
-• education   : BCom Honours (MSU) & academic coursework
-• stack       : Technical languages, databases & infra
-• projects    : Overview of all engineered systems
-• contact     : Direct email, LinkedIn, and Telegram
+[ QUICK SHORTCUTS — TYPE 1 TO 9 ]
+  [1] why-hire    : Top 3 compelling reasons to hire Tsakane
+  [2] experience  : Metbank digital banking & Kubernetes ops
+  [3] education   : BCom Honours (MSU) & academic coursework
+  [4] projects    : Overview of all 6 engineered systems
+  [5] stack       : Technical languages, databases & infra
+  [6] contact     : Direct email, LinkedIn, and Telegram
+  [7] sysinfo     : Host telemetry, architecture & region
+  [8] joke        : Tech & programmer humor
+  [9] matrix      : Follow the white rabbit...
 
-[ SYSTEM & DIAGNOSTICS ]
-• sysinfo     : Host telemetry, architecture & region
-• time / date : Real-time clock & Harare CAT sync
-• ping        : Check simulated latency to gateway
-• status      : Operating condition & system health
+[ DIAGNOSTICS & EASTER EGGS ]
+  • time / date   : Real-time clock & Harare CAT sync
+  • ping          : Check simulated latency to gateway
+  • status        : Operating condition & system health
+  • friday        : Architecture of voice assistant engine
+  • aegis         : Algorithmic trading & MT5 crypto arbitrage
+  • ironman       : Initialize Mark 85 arc reactor protocol
+  • coffee        : Brew a quick dose of developer fuel
+  • quote         : Curated computer science quote
+  • roll-dice     : Test your luck with a D20 roll
+  • clear         : Reset and flush terminal history
 
-[ PROJECT DEEP-DIVES ]
-• friday      : Architecture of voice assistant engine
-• aegis       : Algorithmic trading & MT5 crypto arbitrage
-• dzidza      : Offline-first primary school learning PWA
-• campus      : MSU real-time incident reporting system
-
-[ ENTERTAINMENT & EASTER EGGS ]
-• matrix      : Follow the white rabbit...
-• ironman     : Initialize Mark 85 arc reactor protocol
-• coffee      : Brew a quick dose of developer fuel
-• joke        : Tech & programmer humor
-• quote       : Curated computer science quote
-• roll-dice   : Test your luck with a D20 roll
-• clear       : Reset and flush terminal history
-
-Type any command above into the input box to run it!`;
+💡 Tip: Type any command name or simply enter a number [1] through [9]!`;
     }
 
     // 16. Why Hire Tsakane
