@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, TelegramIcon } from './Icons';
 import {
   Mail,
   Send,
@@ -33,10 +33,16 @@ export default function Contact() {
 
   const contactMethods = [
     {
-      label: 'Email Inquiries',
-      value: 'tsakane@tsakanesithole.co.zw',
-      href: 'mailto:tsakane@tsakanesithole.co.zw',
+      label: 'Direct Email',
+      value: 'tsakane.1578@gmail.com',
+      href: 'mailto:tsakane.1578@gmail.com',
       icon: Mail,
+    },
+    {
+      label: 'Professional Network',
+      value: 'linkedin.com/in/tsakane-sithole-b39276197',
+      href: 'https://www.linkedin.com/in/tsakane-sithole-b39276197',
+      icon: LinkedinIcon,
     },
     {
       label: 'GitHub Profile',
@@ -45,10 +51,10 @@ export default function Contact() {
       icon: GithubIcon,
     },
     {
-      label: 'Professional Network',
-      value: 'linkedin.com/in/tsakane-sithole',
-      href: 'https://linkedin.com/in/tsakane-sithole',
-      icon: LinkedinIcon,
+      label: 'Telegram Channel',
+      value: 't.me/Mxtaker (@Mxtaker)',
+      href: 'https://t.me/Mxtaker',
+      icon: TelegramIcon,
     },
     {
       label: 'Location & Timezone',

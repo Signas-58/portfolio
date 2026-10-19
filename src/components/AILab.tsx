@@ -47,6 +47,10 @@ export default function AILab() {
       "DzidzaAI is an offline-first learning platform tailored for primary learners in low-connectivity areas across Zimbabwe. It caches content locally using SQLite/IndexedDB and provides multilingual guidance in English, Shona, and Ndebele.",
     roles:
       "Tsakane is actively seeking opportunities as an ICT Graduate Trainee, Systems Support Engineer, Data/BI Analyst, Junior Cybersecurity Analyst, or AI Integration Engineer.",
+    aegis:
+      "aegisBTC is Tsakane's quantitative crypto trading automation system built in Python and MetaTrader 5 (MT5), focusing on automated execution, arbitrage, and strict drawdown risk control.",
+    contact:
+      "You can reach Tsakane directly at tsakane.1578@gmail.com, connect on LinkedIn at https://www.linkedin.com/in/tsakane-sithole-b39276197, or message on Telegram @Mxtaker.",
   };
 
   const handleSend = (questionText?: string) => {
@@ -73,6 +77,10 @@ export default function AILab() {
         reply = knowledgeBase.dzidza;
       } else if (lower.includes('role') || lower.includes('job') || lower.includes('career') || lower.includes('hire') || lower.includes('target')) {
         reply = knowledgeBase.roles;
+      } else if (lower.includes('aegis') || lower.includes('trading') || lower.includes('crypto')) {
+        reply = knowledgeBase.aegis;
+      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('reach') || lower.includes('linkedin') || lower.includes('telegram')) {
+        reply = knowledgeBase.contact;
       } else if (lower.includes('friday') || lower.includes('voice')) {
         reply =
           "FRIDAY is Tsakane's voice-activated personal assistant built in Python. It integrates speech recognition, system tool calling, and local LLM pipelines for hands-free workflow automation.";

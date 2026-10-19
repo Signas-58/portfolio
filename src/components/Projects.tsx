@@ -33,7 +33,7 @@ export default function Projects() {
         'A multimodal personal AI assistant combining local speech recognition, LLM reasoning, text-to-speech synthesis, and OS-level system automation tools.',
       status: 'In Development',
       tags: ['Python', 'LLM Integration', 'Speech Recognition', 'Automation', 'AsyncIO'],
-      githubUrl: 'https://github.com/Signas-58/friday-tony-stark-demo',
+      githubUrl: 'https://github.com/Signas-58/friday-demo',
       caseStudy: {
         problem:
           'Standard voice assistants are locked into proprietary cloud ecosystems with rigid commands, high latency, and zero deep customization for developer workflows.',
@@ -136,6 +136,29 @@ export default function Projects() {
         outcomes:
           'Configured self-healing deployment manifests, monitored pod crash-loops, and documented standardized runbooks for production incident triage.',
         techStack: ['Kubernetes', 'Docker', 'Linux Bash', 'Networking Protocols', 'Security Hardening'],
+      },
+    },
+    {
+      id: 'aegis-btc',
+      title: 'aegisBTC — Algorithmic & Crypto Trading Automation Engine',
+      codeId: 'SYS_06 // AEGIS_BTC',
+      category: 'Data & Security',
+      tagline: 'Quantitative trading engine, MT5 automation, arbitrage & risk management',
+      description:
+        'A quantitative trading automation framework in Python and MT5 designed for automated order execution, crypto market arbitrage, trailing stop risk management, and backtesting.',
+      status: 'Production Prototype',
+      tags: ['Python', 'Quantitative Finance', 'Crypto Arbitrage', 'MT5 Automation', 'Risk Management'],
+      githubUrl: 'https://github.com/Signas-58/aegisBTC',
+      caseStudy: {
+        problem:
+          'Manual trading execution incurs high slippage and latency, while lack of automated risk-capping exposes portfolios to sudden crypto market volatility.',
+        architecture:
+          'Market Data Ingestion (Tick Streams) → Quantitative Alpha Signal Generator → Risk & Position Sizing Engine → MT5 / Exchange REST API Execution → Trade Telemetry Logger.',
+        tradeOffs:
+          'Prioritized deterministic execution latency and strict stop-loss guardrails over multi-asset concurrency to ensure maximum capital protection.',
+        outcomes:
+          'Automated execution latency reduced to sub-50ms with comprehensive risk guardrails, drawdown monitors, and live trade journaling.',
+        techStack: ['Python 3.11', 'MetaTrader 5 API', 'NumPy & Pandas', 'Exchange WebSockets', 'Automated Backtesting'],
       },
     },
   ];

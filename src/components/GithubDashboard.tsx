@@ -21,7 +21,7 @@ export default function GithubDashboard() {
     login: 'Signas-58',
     name: 'Tsakane Sithole',
     avatar_url: 'https://avatars.githubusercontent.com/u/108990422?v=4',
-    public_repos: 12,
+    public_repos: 47,
     followers: 6,
     following: 9,
     bio: 'Information Systems | Intelligent Automation | Building FRIDAY & Practical Software',
@@ -51,25 +51,25 @@ export default function GithubDashboard() {
 
   const featuredRepos = [
     {
-      name: 'friday-tony-stark-demo',
-      desc: 'Voice-Activated AI Assistant inspired by Tony Stark technology.',
+      name: 'friday-demo',
+      desc: 'Voice-Activated Multimodal AI Assistant inspired by Tony Stark technology.',
       lang: 'Python',
       langColor: '#3572A5',
-      url: 'https://github.com/Signas-58/friday-tony-stark-demo',
+      url: 'https://github.com/Signas-58/friday-demo',
+    },
+    {
+      name: 'aegisBTC',
+      desc: 'Algorithmic trading automation system for market execution and risk management.',
+      lang: 'Python',
+      langColor: '#f59e0b',
+      url: 'https://github.com/Signas-58/aegisBTC',
     },
     {
       name: 'portfolio',
-      desc: 'TSakaneOS personal developer and information systems portfolio.',
+      desc: 'TSakaneOS personal developer and information systems portfolio with dual-theme HUD.',
       lang: 'TypeScript',
       langColor: '#3178c6',
       url: 'https://github.com/Signas-58/portfolio',
-    },
-    {
-      name: 'Signas-58',
-      desc: 'Interactive personal GitHub profile README featuring cyber HUD styling.',
-      lang: 'Markdown',
-      langColor: '#0891b2',
-      url: 'https://github.com/Signas-58/Signas-58',
     },
   ];
 

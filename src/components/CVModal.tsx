@@ -86,7 +86,7 @@ export default function CVModal() {
               </p>
               <p className="flex items-center sm:justify-end gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-blue-600" />
-                <span>tsakane@tsakanesithole.co.zw</span>
+                <span>tsakane.1578@gmail.com</span>
               </p>
               <p className="flex items-center sm:justify-end gap-1.5">
                 <GithubIcon className="w-3.5 h-3.5 text-blue-600" />

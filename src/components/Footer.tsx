@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTheme } from '@/context/ThemeContext';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, TelegramIcon } from './Icons';
 import { ArrowUp, Terminal, Shield, Globe, Heart } from 'lucide-react';
 
 export default function Footer() {
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         {/* Center Links */}
-        <div className="flex items-center gap-6 text-xs font-mono">
+        <div className="flex items-center gap-5 text-xs font-mono">
           <a
             href="https://github.com/Signas-58"
             target="_blank"
@@ -46,13 +46,22 @@ export default function Footer() {
             <span>GitHub</span>
           </a>
           <a
-            href="https://linkedin.com/in/tsakane-sithole"
+            href="https://www.linkedin.com/in/tsakane-sithole-b39276197"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 flex items-center gap-1.5 transition-colors"
           >
             <LinkedinIcon className="w-3.5 h-3.5" />
             <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://t.me/Mxtaker"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cyan-400 flex items-center gap-1.5 transition-colors"
+          >
+            <TelegramIcon className="w-3.5 h-3.5" />
+            <span>Telegram</span>
           </a>
           <span className="text-slate-600">|</span>
           <span className="text-[11px] font-mono text-cyan-400">
