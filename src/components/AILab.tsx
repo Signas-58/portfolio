@@ -39,7 +39,7 @@ export default function AILab() {
 
   const [input, setInput] = useState('');
   const initialGreeting =
-    "Greetings! I am F.R.I.D.A.Y., Tsakane's interactive portfolio assistant. You can ask me practical questions like 'Who made you?', 'How do you work?', 'What time is it?', or explore Tsakane's education, Metbank experience, and engineering projects.";
+    "Greetings! I am F.R.I.D.A.Y., Tsakane's interactive portfolio assistant. You have 6 exploratory queries in this session to ask practical questions ('Who made you?', 'How do you work?', 'What time is it?', Metbank experience, etc). Feel free to ask for a 'joke' anytime — developer jokes are 100% UNLIMITED and never consume your queries!";
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -48,6 +48,7 @@ export default function AILab() {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [queriesLeft, setQueriesLeft] = useState(6);
   const jokeIndexRef = useRef(0);
 
   const getNextJoke = () => {
@@ -365,7 +366,12 @@ Knock, knock, Neo. 🐇💊`;
   • coffee        : Brew a quick dose of developer fuel
   • quote         : Curated computer science quote
   • roll-dice     : Test your luck with a D20 roll
-  • clear         : Reset and flush terminal history
+  • clear / reset : Reset terminal and refresh queries
+
+[ SESSION GUARDRAILS ]
+  • Query Limit   : 6 exploratory queries per session
+  • Jokes & Humor : UNLIMITED (does NOT consume query tokens)
+  • Reset         : Type 'reset' or click the top-right button anytime
 
 💡 Tip: Type any command name or simply enter a number [1] through [9]!`;
     }
@@ -475,13 +481,56 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
     return `Regarding "${rawInput}": Tsakane Sithole is an Information Systems honours graduate with digital banking operations experience at Metbank. He specializes in building practical software, AI automation, and secure enterprise IT systems.\n\n💡 Tip: Type 'help' to see the full list of interactive commands and Easter eggs!`;
   };
 
+  const isJokeOrExempt = (raw: string) => {
+    const clean = raw.toLowerCase().replace(/[?!.,;]/g, '').trim();
+    return (
+      clean === 'joke' ||
+      clean === '8' ||
+      clean === 'option 8' ||
+      clean.includes('joke') ||
+      clean.includes('jokes') ||
+      clean.includes('funny') ||
+      clean.includes('laugh') ||
+      clean.includes('humor') ||
+      clean.includes('humour') ||
+      clean === 'help' ||
+      clean === 'commands' ||
+      clean === 'menu' ||
+      clean === 'manual' ||
+      clean === 'reset' ||
+      clean === 'clear'
+    );
+  };
+
   const handleSend = (questionText?: string) => {
     const textToSend = questionText || input;
     if (!textToSend.trim() || isTyping) return;
 
     // Reset command
     if (textToSend.trim().toLowerCase() === 'clear' || textToSend.trim().toLowerCase() === 'reset') {
-      setMessages([{ sender: 'ai', text: initialGreeting }]);
+      handleReset();
+      return;
+    }
+
+    const isExempt = isJokeOrExempt(textToSend);
+
+    // If query limit reached and query is NOT a joke or exempt command
+    if (queriesLeft <= 0 && !isExempt) {
+      const userMsg: ChatMessage = { sender: 'user', text: textToSend };
+      setMessages((prev) => [
+        ...prev,
+        userMsg,
+        {
+          sender: 'ai',
+          text: `🔒 Session query limit reached (0/6 queries used).
+
+To protect service availability, this interactive preview allows 6 exploratory queries per session.
+
+✨ Jokes are completely UNLIMITED! Type 'joke' or click the prompt chip to keep enjoying developer humor.
+🔄 Click the 'Reset' button (or type 'reset') to start a fresh 6-query session.
+📩 Ready to connect? Contact Tsakane at tsakane.1578@gmail.com or on Telegram @Mxtaker.`,
+        },
+      ]);
       setInput('');
       return;
     }
@@ -490,6 +539,11 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setIsTyping(true);
+
+    // Deduct token ONLY if it is not a joke or exempt command
+    if (!isExempt) {
+      setQueriesLeft((prev) => Math.max(0, prev - 1));
+    }
 
     // Realistic response delay
     setTimeout(() => {
@@ -501,6 +555,7 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
 
   const handleReset = () => {
     setMessages([{ sender: 'ai', text: initialGreeting }]);
+    setQueriesLeft(6);
     setInput('');
   };
 
@@ -522,7 +577,7 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
             isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
           }`}
         >
-          An interactive demo preview of FRIDAY's intent engine. Ask common practical questions (*&quot;Who made you?&quot;*, *&quot;What time is it?&quot;*, *&quot;How do you work?&quot;*) or query Tsakane&apos;s background.
+          An interactive demo preview of FRIDAY&apos;s intent engine with a 6-query session guardrail. Ask common practical questions (*&quot;Who made you?&quot;*, *&quot;What time is it?&quot;*, *&quot;How do you work?&quot;*) or test out the developer jokes (which are 100% exempt from the query count).
         </p>
       </div>
 
@@ -551,15 +606,38 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
           </div>
 
           <div className="flex items-center gap-3">
+            {/* 6-Query Lockout Telemetry Counter */}
+            <div
+              className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-mono transition-colors ${
+                queriesLeft > 0
+                  ? isRecruiterMode
+                    ? 'bg-blue-50 border-blue-200 text-blue-700'
+                    : 'bg-cyan-950/50 border-cyan-500/30 text-cyan-300 shadow-[0_0_10px_rgba(0,243,255,0.15)]'
+                  : 'bg-amber-500/10 border-amber-500/40 text-amber-400 animate-pulse'
+              }`}
+              title="6 query session lockout is active. Jokes never consume queries!"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>
+                {queriesLeft > 0 ? (
+                  <>
+                    <span className="font-semibold">{queriesLeft}</span>/6 Queries
+                  </>
+                ) : (
+                  <span className="font-semibold text-amber-400">Lockout (0/6)</span>
+                )}
+              </span>
+            </div>
+
             <button
               onClick={handleReset}
               className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-cyan-400 transition-colors"
-              title="Reset Terminal Session"
+              title="Reset Terminal Session & 6 Queries"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
             </button>
-            <div className="flex items-center gap-1.5 text-emerald-400">
+            <div className="hidden sm:flex items-center gap-1.5 text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[11px]">System Online</span>
             </div>
@@ -568,25 +646,34 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
 
         {/* Suggested Practical Prompt Chips */}
         <div
-          className={`px-5 py-3 border-b flex flex-wrap items-center gap-2 text-xs font-mono ${
+          className={`px-5 py-3 border-b flex flex-wrap items-center justify-between gap-2 text-xs font-mono ${
             isRecruiterMode ? 'bg-slate-50 border-slate-200' : 'bg-slate-950/40 border-slate-800'
           }`}
         >
-          <span className="text-slate-400 py-1">Try asking:</span>
-          {promptChips.map((chip, i) => (
-            <button
-              key={i}
-              onClick={() => handleSend(chip)}
-              disabled={isTyping}
-              className={`px-3 py-1 rounded-md border transition-all ${
-                isRecruiterMode
-                  ? 'bg-white border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600'
-                  : 'bg-cyan-950/30 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40 hover:shadow-[0_0_10px_rgba(0,243,255,0.2)]'
-              }`}
-            >
-              {chip}
-            </button>
-          ))}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-slate-400 py-1">Try asking:</span>
+            {promptChips.map((chip, i) => (
+              <button
+                key={i}
+                onClick={() => handleSend(chip)}
+                disabled={isTyping}
+                className={`px-3 py-1 rounded-md border transition-all ${
+                  chip === 'joke'
+                    ? isRecruiterMode
+                      ? 'bg-amber-50 border-amber-300 text-amber-700 font-semibold hover:bg-amber-100'
+                      : 'bg-amber-950/30 border-amber-500/40 text-amber-300 font-semibold hover:border-amber-400 hover:bg-amber-900/40 hover:shadow-[0_0_10px_rgba(245,158,11,0.2)]'
+                    : isRecruiterMode
+                    ? 'bg-white border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600'
+                    : 'bg-cyan-950/30 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40 hover:shadow-[0_0_10px_rgba(0,243,255,0.2)]'
+                }`}
+              >
+                {chip === 'joke' ? '🎭 joke (unlimited)' : chip}
+              </button>
+            ))}
+          </div>
+          <div className="hidden md:flex items-center gap-1 text-[11px] text-slate-400">
+            <span>🎭 Jokes are exempt from the 6-query limit</span>
+          </div>
         </div>
 
         {/* Chat History Log */}
@@ -661,7 +748,11 @@ Converting caffeine directly into clean TypeScript and resilient SQL queries... 
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask FRIDAY: 'Who made you?', 'How do you work?', 'What time is it?', or about Metbank..."
+              placeholder={
+                queriesLeft > 0
+                  ? `Ask FRIDAY: 'Who made you?', 'How do you work?', 'What time is it?'... (${queriesLeft}/6 left, jokes unlimited)`
+                  : "Session query limit reached (0/6). Click 'Reset' to refresh, or type 'joke' (unlimited)!"
+              }
               disabled={isTyping}
               className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono border focus:outline-none transition-colors ${
                 isRecruiterMode
