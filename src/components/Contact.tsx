@@ -160,7 +160,7 @@ export default function Contact() {
             }`}>
               <span className="flex items-center gap-1.5">
                 <Globe className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
-                <span className={isRecruiterMode ? 'text-slate-800 font-medium' : ''}>tsakanesithole.co.zw</span>
+                <span className={isRecruiterMode ? 'text-slate-800 font-medium' : ''}>tsakane.co.zw</span>
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
