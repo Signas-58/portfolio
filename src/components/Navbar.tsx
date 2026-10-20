@@ -74,7 +74,7 @@ export default function Navbar() {
               </div>
               <p
                 className={`text-[10px] font-mono tracking-tight ${
-                  isRecruiterMode ? 'text-slate-500' : 'text-cyan-400/70'
+                  isRecruiterMode ? 'text-blue-700 font-bold' : 'text-cyan-400/70'
                 }`}
               >
                 {isRecruiterMode ? 'RECRUITER REVIEW MODE' : 'SYS_STATUS: ONLINE'}
@@ -90,7 +90,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-xs font-mono uppercase tracking-wider transition-colors duration-200 ${
                   isRecruiterMode
-                    ? 'text-slate-600 hover:text-blue-600 font-medium'
+                    ? 'text-slate-800 hover:text-blue-600 font-semibold'
                     : 'text-slate-400 hover:text-cyan-400'
                 }`}
               >

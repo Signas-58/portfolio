@@ -81,12 +81,14 @@ export default function GithubDashboard() {
   ];
 
   return (
-    <section id="github" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="github" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+          <span className={`text-xs font-mono uppercase tracking-widest ${
+            isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+          }`}>
             05 // OPEN SOURCE TELEMETRY
           </span>
         </div>
@@ -97,7 +99,7 @@ export default function GithubDashboard() {
         </h2>
         <p
           className={`mt-2 text-sm sm:text-base max-w-2xl ${
-            isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+            isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
           }`}
         >
           Real-time activity and public repository insights from GitHub profile{' '}
@@ -136,7 +138,9 @@ export default function GithubDashboard() {
                 href={userData.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1"
+                className={`text-xs font-mono hover:underline flex items-center gap-1 ${
+                  isRecruiterMode ? 'text-blue-700 font-semibold' : 'text-cyan-400'
+                }`}
               >
                 <span>@{userData.login}</span>
                 <ExternalLink className="w-3 h-3" />
@@ -144,7 +148,7 @@ export default function GithubDashboard() {
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          <p className={`text-xs sm:text-sm leading-relaxed ${isRecruiterMode ? 'text-slate-700 font-medium' : 'text-slate-400'}`}>
             {userData.bio}
           </p>
 
@@ -215,12 +219,12 @@ export default function GithubDashboard() {
                   }`}>
                     {repo.name}
                   </h4>
-                  <p className={`text-[11px] line-clamp-2 mb-4 ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
+                  <p className={`text-[11px] line-clamp-2 mb-4 ${isRecruiterMode ? 'text-slate-700 font-medium' : 'text-slate-400'}`}>
                     {repo.desc}
                   </p>
                 </div>
 
-                <div className={`flex items-center gap-2 text-[10px] font-mono ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
+                <div className={`flex items-center gap-2 text-[10px] font-mono ${isRecruiterMode ? 'text-slate-700 font-medium' : 'text-slate-400'}`}>
                   <span
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: repo.langColor }}
@@ -240,14 +244,20 @@ export default function GithubDashboard() {
             }`}
           >
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+              <h4 className={`text-xs font-mono uppercase tracking-wider ${
+                isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+              }`}>
                 Primary Technology Distribution:
               </h4>
-              <span className="text-[11px] font-mono text-cyan-400">Calculated from public code</span>
+              <span className={`text-[11px] font-mono ${
+                isRecruiterMode ? 'text-blue-700 font-semibold' : 'text-cyan-400'
+              }`}>Calculated from public code</span>
             </div>
 
             {/* Progress Segmented Bar */}
-            <div className="h-3 w-full rounded-full bg-slate-800 overflow-hidden flex">
+            <div className={`h-3 w-full rounded-full overflow-hidden flex ${
+              isRecruiterMode ? 'bg-slate-200' : 'bg-slate-800'
+            }`}>
               {languageDistribution.map((lang) => (
                 <div
                   key={lang.name}
@@ -263,8 +273,8 @@ export default function GithubDashboard() {
               {languageDistribution.map((lang) => (
                 <div key={lang.name} className="flex items-center gap-2">
                   <span className={`w-2.5 h-2.5 rounded-full ${lang.color}`} />
-                  <span className="text-slate-300">{lang.name}</span>
-                  <span className="text-slate-500">({lang.percentage}%)</span>
+                  <span className={isRecruiterMode ? 'text-slate-800 font-medium' : 'text-slate-300'}>{lang.name}</span>
+                  <span className={isRecruiterMode ? 'text-slate-600' : 'text-slate-500'}>({lang.percentage}%)</span>
                 </div>
               ))}
             </div>

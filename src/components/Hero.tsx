@@ -89,17 +89,17 @@ export default function Hero() {
           </h1>
           <p
             className={`max-w-3xl mx-auto text-base sm:text-lg md:text-xl font-normal leading-relaxed ${
-              isRecruiterMode ? 'text-slate-600' : 'text-slate-300'
+              isRecruiterMode ? 'text-slate-700' : 'text-slate-300'
             }`}
           >
             BCom Honours in Information Systems graduate from{' '}
-            <span className={isRecruiterMode ? 'text-slate-900 font-medium' : 'text-cyan-300 font-medium'}>
+            <strong className={isRecruiterMode ? 'text-slate-900 font-bold' : 'text-cyan-300 font-medium'}>
               Midlands State University
-            </span>{' '}
+            </strong>{' '}
             with real-world experience supporting digital channels and merchant services at{' '}
-            <span className={isRecruiterMode ? 'text-slate-900 font-medium' : 'text-cyan-300 font-medium'}>
+            <strong className={isRecruiterMode ? 'text-slate-900 font-bold' : 'text-cyan-300 font-medium'}>
               Metbank
-            </span>
+            </strong>
             . Building intelligent automation, data analytics, and resilient IT infrastructure.
           </p>
         </motion.div>
@@ -185,7 +185,7 @@ export default function Hero() {
             href="#contact"
             className={`w-full sm:w-auto px-5 py-3 rounded-xl text-sm font-mono transition-colors ${
               isRecruiterMode
-                ? 'text-slate-600 hover:text-blue-600'
+                ? 'text-slate-800 hover:text-blue-600 font-medium'
                 : 'text-slate-400 hover:text-cyan-400'
             }`}
           >
@@ -199,7 +199,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
           className={`mt-12 pt-8 border-t flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono ${
-            isRecruiterMode ? 'border-blue-200/80 text-slate-600' : 'border-slate-800 text-slate-400'
+            isRecruiterMode ? 'border-blue-200/80 text-slate-800 font-medium' : 'border-slate-800 text-slate-400'
           }`}
         >
           <div className="flex items-center gap-2">

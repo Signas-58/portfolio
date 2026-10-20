@@ -40,12 +40,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+          <span className={`text-xs font-mono uppercase tracking-widest ${
+            isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+          }`}>
             01 // PROFILE & BACKGROUND
           </span>
         </div>
@@ -56,7 +58,7 @@ export default function About() {
         </h2>
         <p
           className={`mt-2 text-sm sm:text-base max-w-2xl ${
-            isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+            isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
           }`}
         >
           Bridging Information Systems management, IT support, and modern AI automation to build practical enterprise solutions.

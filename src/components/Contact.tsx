@@ -72,12 +72,14 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+          <span className={`text-xs font-mono uppercase tracking-widest ${
+            isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+          }`}>
             07 // SECURE COMMUNICATION
           </span>
         </div>
@@ -88,7 +90,7 @@ export default function Contact() {
         </h2>
         <p
           className={`mt-2 text-sm sm:text-base max-w-2xl ${
-            isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+            isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
           }`}
         >
           Open to ICT Graduate Trainee positions, Systems Support, Data & BI Analysis, and AI integration engineering roles.
@@ -123,7 +125,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className={`p-3 rounded-xl border flex items-center gap-3 transition-colors ${
                       isRecruiterMode
-                        ? 'bg-slate-50 border-slate-200 hover:border-blue-400'
+                        ? 'bg-blue-50/50 border-blue-200/80 hover:bg-blue-50 hover:border-blue-400'
                         : 'bg-slate-900/50 border-cyan-500/15 hover:border-cyan-400/50 hover:bg-slate-900'
                     }`}
                   >
@@ -137,10 +139,14 @@ export default function Contact() {
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                      <p className={`text-[10px] font-mono uppercase tracking-wider ${
+                        isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+                      }`}>
                         {m.label}
                       </p>
-                      <p className="text-xs font-mono font-medium text-slate-200 dark:text-slate-200">
+                      <p className={`text-xs font-mono font-medium ${
+                        isRecruiterMode ? 'text-slate-900 font-bold' : 'text-slate-200'
+                      }`}>
                         {m.value}
                       </p>
                     </div>
@@ -149,14 +155,16 @@ export default function Contact() {
               })}
             </div>
 
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
+            <div className={`pt-4 border-t flex items-center justify-between text-xs font-mono ${
+              isRecruiterMode ? 'border-blue-100 text-slate-600' : 'border-slate-800 text-slate-400'
+            }`}>
               <span className="flex items-center gap-1.5">
-                <Globe className="w-3.5 h-3.5 text-cyan-400" />
-                <span>tsakanesithole.co.zw</span>
+                <Globe className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
+                <span className={isRecruiterMode ? 'text-slate-800 font-medium' : ''}>tsakanesithole.co.zw</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Fast Response Time</span>
+                <Clock className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
+                <span className={isRecruiterMode ? 'text-slate-800 font-medium' : ''}>Fast Response Time</span>
               </span>
             </div>
           </div>
@@ -207,7 +215,9 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">
+                  <label className={`block text-xs font-mono uppercase tracking-wider mb-1.5 ${
+                    isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+                  }`}>
                     Your Name / Organization
                   </label>
                   <input
@@ -220,14 +230,16 @@ export default function Contact() {
                     placeholder="e.g. Jane Doe (Tech Talent Lead)"
                     className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono border focus:outline-none transition-colors ${
                       isRecruiterMode
-                        ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
-                        : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200'
+                        ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900 placeholder:text-slate-500'
+                        : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200 placeholder:text-slate-500'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">
+                  <label className={`block text-xs font-mono uppercase tracking-wider mb-1.5 ${
+                    isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+                  }`}>
                     Email Address
                   </label>
                   <input
@@ -240,15 +252,17 @@ export default function Contact() {
                     placeholder="e.g. contact@organization.com"
                     className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono border focus:outline-none transition-colors ${
                       isRecruiterMode
-                        ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
-                        : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200'
+                        ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900 placeholder:text-slate-500'
+                        : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200 placeholder:text-slate-500'
                     }`}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">
+                <label className={`block text-xs font-mono uppercase tracking-wider mb-1.5 ${
+                  isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+                }`}>
                   Inquiry Category
                 </label>
                 <select
@@ -281,7 +295,9 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-1.5">
+                <label className={`block text-xs font-mono uppercase tracking-wider mb-1.5 ${
+                  isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+                }`}>
                   Message Details
                 </label>
                 <textarea
@@ -294,8 +310,8 @@ export default function Contact() {
                   placeholder="Share details regarding the role, requirements, or collaboration..."
                   className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono border focus:outline-none transition-colors ${
                     isRecruiterMode
-                      ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900'
-                      : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200'
+                      ? 'bg-slate-50 border-slate-300 focus:border-blue-600 text-slate-900 placeholder:text-slate-500'
+                      : 'bg-slate-900/80 border-cyan-500/20 focus:border-cyan-400 text-slate-200 placeholder:text-slate-500'
                   }`}
                 />
               </div>

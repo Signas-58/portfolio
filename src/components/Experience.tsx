@@ -17,12 +17,14 @@ export default function Experience() {
   const { isRecruiterMode } = useTheme();
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+          <span className={`text-xs font-mono uppercase tracking-widest ${
+            isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+          }`}>
             02 // TRACK RECORD
           </span>
         </div>
@@ -33,7 +35,7 @@ export default function Experience() {
         </h2>
         <p
           className={`mt-2 text-sm sm:text-base max-w-2xl ${
-            isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+            isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
           }`}
         >
           Industry experience in digital financial channels and formal academic background in Information Systems.
@@ -81,7 +83,9 @@ export default function Experience() {
           </p>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+            <h4 className={`text-xs font-mono uppercase tracking-wider ${
+              isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+            }`}>
               Key Responsibilities & Contributions:
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -168,7 +172,9 @@ export default function Experience() {
           </p>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+            <h4 className={`text-xs font-mono uppercase tracking-wider ${
+              isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+            }`}>
               Key Academic Coursework & Focus Areas:
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -184,17 +190,19 @@ export default function Experience() {
               ].map((c) => (
                 <div key={c} className="flex items-center gap-2">
                   <div className={`w-1.5 h-1.5 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
-                  <span>{c}</span>
+                  <span className={isRecruiterMode ? 'text-slate-800 font-medium' : ''}>{c}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+          <div className={`pt-4 border-t ${isRecruiterMode ? 'border-blue-100' : 'border-slate-800'} space-y-2`}>
+            <h4 className={`text-xs font-mono uppercase tracking-wider ${
+              isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'
+            }`}>
               Target Career Pathways:
             </h4>
-            <p className={`text-xs leading-relaxed ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
+            <p className={`text-xs leading-relaxed ${isRecruiterMode ? 'text-slate-700' : 'text-slate-400'}`}>
               Equipped to excel in ICT Graduate Trainee schemes, Systems Support Engineering, Data & BI Analysis, Junior DevOps/Cloud Administration, and Cybersecurity Operations.
             </p>
           </div>

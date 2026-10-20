@@ -674,12 +674,14 @@ To protect service availability, this interactive preview allows 6 exploratory q
   };
 
   return (
-    <section id="ai-lab" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="ai-lab" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+          <span className={`text-xs font-mono uppercase tracking-widest ${
+            isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+          }`}>
             04 // INTELLIGENT AGENT SANDBOX
           </span>
         </div>
@@ -690,7 +692,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
         </h2>
         <p
           className={`mt-2 text-sm sm:text-base max-w-2xl ${
-            isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+            isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
           }`}
         >
           An interactive demo preview of FRIDAY&apos;s intent engine with a 6-query session guardrail. Ask common practical questions (*&quot;Who made you?&quot;*, *&quot;What time is it?&quot;*, *&quot;How do you work?&quot;*) or test out the developer jokes (which are 100% exempt from the query count).
@@ -767,7 +769,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
           }`}
         >
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-slate-400 py-1">Try asking:</span>
+            <span className={`py-1 ${isRecruiterMode ? 'text-slate-800 font-bold' : 'text-slate-400'}`}>Try asking:</span>
             {promptChips.map((chip, i) => (
               <button
                 key={i}
@@ -776,10 +778,10 @@ To protect service availability, this interactive preview allows 6 exploratory q
                 className={`px-3 py-1 rounded-md border transition-all ${
                   chip === 'joke'
                     ? isRecruiterMode
-                      ? 'bg-amber-50 border-amber-300 text-amber-700 font-semibold hover:bg-amber-100'
+                      ? 'bg-amber-50 border-amber-300 text-amber-800 font-bold hover:bg-amber-100'
                       : 'bg-amber-950/30 border-amber-500/40 text-amber-300 font-semibold hover:border-amber-400 hover:bg-amber-900/40 hover:shadow-[0_0_10px_rgba(245,158,11,0.2)]'
                     : isRecruiterMode
-                    ? 'bg-white border-slate-300 text-slate-700 hover:border-blue-500 hover:text-blue-600'
+                    ? 'bg-white border-blue-200 text-slate-800 font-medium hover:border-blue-500 hover:text-blue-700 shadow-xs'
                     : 'bg-cyan-950/30 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40 hover:shadow-[0_0_10px_rgba(0,243,255,0.2)]'
                 }`}
               >
@@ -787,8 +789,8 @@ To protect service availability, this interactive preview allows 6 exploratory q
               </button>
             ))}
           </div>
-          <div className="hidden md:flex items-center gap-1 text-[11px] text-slate-400">
-            <span>🎭 Jokes are exempt from the 6-query limit</span>
+          <div className="hidden md:flex items-center gap-1 text-[11px]">
+            <span className={isRecruiterMode ? 'text-slate-600 font-medium' : 'text-slate-400'}>🎭 Jokes are exempt from the 6-query limit</span>
           </div>
         </div>
 

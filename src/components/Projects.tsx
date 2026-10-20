@@ -171,13 +171,15 @@ export default function Projects() {
       : projectsData.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400" />
-            <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+            <span className={`w-2 h-2 rounded-full ${isRecruiterMode ? 'bg-blue-600' : 'bg-cyan-400'}`} />
+            <span className={`text-xs font-mono uppercase tracking-widest ${
+              isRecruiterMode ? 'text-blue-700 font-bold' : 'text-slate-400'
+            }`}>
               03 // FEATURED WORK
             </span>
           </div>
@@ -188,7 +190,7 @@ export default function Projects() {
           </h2>
           <p
             className={`mt-2 text-sm sm:text-base max-w-2xl ${
-              isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+              isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
             }`}
           >
             Detailed engineering case studies walking through real-world problems, technical architecture, and verified outcomes.
@@ -237,9 +239,15 @@ export default function Projects() {
                 <span
                   className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
                     project.status === 'Production Prototype'
-                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+                      ? isRecruiterMode
+                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700 font-medium'
+                        : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
                       : project.status === 'In Development'
-                      ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
+                      ? isRecruiterMode
+                        ? 'border-blue-300 bg-blue-50 text-blue-700 font-medium'
+                        : 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
+                      : isRecruiterMode
+                      ? 'border-purple-300 bg-purple-50 text-purple-700 font-medium'
                       : 'border-purple-500/30 bg-purple-500/10 text-purple-400'
                   }`}
                 >
@@ -255,7 +263,7 @@ export default function Projects() {
 
               <p
                 className={`text-xs leading-relaxed mb-4 line-clamp-3 ${
-                  isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
+                  isRecruiterMode ? 'text-slate-700' : 'text-slate-400'
                 }`}
               >
                 {project.description}
@@ -279,7 +287,9 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+              <div className={`flex items-center justify-between pt-4 border-t ${
+                isRecruiterMode ? 'border-blue-100' : 'border-slate-800'
+              }`}>
                 <button
                   onClick={() => setActiveModalProject(project)}
                   className={`text-xs font-mono font-medium flex items-center gap-1.5 transition-colors ${
@@ -297,7 +307,11 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg border border-slate-700 hover:border-cyan-400 text-slate-400 hover:text-cyan-400 transition-colors"
+                    className={`p-1.5 rounded-lg border transition-colors ${
+                      isRecruiterMode
+                        ? 'border-blue-200 hover:border-blue-500 text-slate-600 hover:text-blue-600 bg-white'
+                        : 'border-slate-700 hover:border-cyan-400 text-slate-400 hover:text-cyan-400'
+                    }`}
                     title="View GitHub Repository"
                   >
                     <GithubIcon className="w-4 h-4" />
