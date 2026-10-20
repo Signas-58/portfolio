@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTheme } from '@/context/ThemeContext';
 import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -16,8 +17,14 @@ import Footer from '@/components/Footer';
 import CVModal from '@/components/CVModal';
 
 export default function Home() {
+  const { isRecruiterMode } = useTheme();
+
   return (
-    <main className="relative min-h-screen cyber-grid overflow-hidden">
+    <main
+      className={`relative min-h-screen cyber-grid overflow-hidden transition-colors duration-300 ${
+        isRecruiterMode ? 'bg-[#f0f4f9] text-slate-900' : 'bg-[#030712] text-slate-100'
+      }`}
+    >
       {/* Zero-G Particle background */}
       <ParticleBackground />
 

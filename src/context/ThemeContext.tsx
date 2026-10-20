@@ -19,8 +19,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('tsakane_recruiter_mode');
-    if (saved === 'true') {
-      setIsRecruiterMode(true);
+    const isRecruiter = saved === 'true';
+    setIsRecruiterMode(isRecruiter);
+    if (isRecruiter) {
+      document.documentElement.classList.add('theme-recruiter');
+      document.body.classList.add('theme-recruiter');
+    } else {
+      document.documentElement.classList.remove('theme-recruiter');
+      document.body.classList.remove('theme-recruiter');
     }
   }, []);
 
@@ -28,6 +34,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setIsRecruiterMode((prev) => {
       const next = !prev;
       localStorage.setItem('tsakane_recruiter_mode', String(next));
+      if (next) {
+        document.documentElement.classList.add('theme-recruiter');
+        document.body.classList.add('theme-recruiter');
+      } else {
+        document.documentElement.classList.remove('theme-recruiter');
+        document.body.classList.remove('theme-recruiter');
+      }
       return next;
     });
   };
@@ -41,7 +54,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         setIsCVModalOpen,
       }}
     >
-      <div className={isRecruiterMode && mounted ? 'theme-recruiter' : 'theme-cyber'}>
+      <div className={`min-h-screen transition-colors duration-300 ${isRecruiterMode && mounted ? 'theme-recruiter bg-[#f0f4f9] text-slate-900' : 'theme-cyber bg-[#030712] text-slate-100'}`}>
         {children}
       </div>
     </ThemeContext.Provider>

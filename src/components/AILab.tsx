@@ -683,7 +683,9 @@ To protect service availability, this interactive preview allows 6 exploratory q
             04 // INTELLIGENT AGENT SANDBOX
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           My AI Lab — FRIDAY Terminal
         </h2>
         <p
@@ -698,7 +700,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
       <div
         className={`rounded-2xl border backdrop-blur-xl overflow-hidden transition-all duration-300 ${
           isRecruiterMode
-            ? 'bg-white border-slate-300 shadow-md'
+            ? 'bg-white/95 border-blue-200/80 shadow-md'
             : 'bg-[#050b16] border-cyan-500/30 shadow-[0_0_40px_rgba(0,243,255,0.15)]'
         }`}
       >
@@ -706,7 +708,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
         <div
           className={`flex items-center justify-between px-5 py-3 border-b text-xs font-mono ${
             isRecruiterMode
-              ? 'bg-slate-100 border-slate-200 text-slate-700'
+              ? 'bg-blue-50/80 border-blue-200/80 text-blue-800'
               : 'bg-slate-900/80 border-cyan-500/20 text-cyan-400'
           }`}
         >
@@ -791,7 +793,9 @@ To protect service availability, this interactive preview allows 6 exploratory q
         </div>
 
         {/* Chat History Log */}
-        <div className="p-5 sm:p-6 min-h-[280px] max-h-[460px] overflow-y-auto space-y-4">
+        <div className={`p-5 sm:p-6 min-h-[280px] max-h-[460px] overflow-y-auto space-y-4 ${
+          isRecruiterMode ? 'bg-slate-50/70' : 'bg-transparent'
+        }`}>
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -817,7 +821,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
                       ? 'bg-blue-600 text-white rounded-tr-none'
                       : 'bg-cyan-500/20 border border-cyan-400 text-cyan-200 rounded-tr-none'
                     : isRecruiterMode
-                    ? 'bg-slate-100 border border-slate-200 text-slate-800 rounded-tl-none font-sans'
+                    ? 'bg-white border border-blue-200/80 text-slate-800 rounded-tl-none font-sans shadow-xs'
                     : 'bg-slate-900/80 border border-slate-800 text-slate-300 rounded-tl-none font-mono'
                 }`}
               >
@@ -827,7 +831,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
                 <div
                   className={`p-2 rounded-lg flex-shrink-0 ${
                     isRecruiterMode
-                      ? 'bg-slate-200 text-slate-700'
+                      ? 'bg-blue-100 text-blue-700'
                       : 'bg-slate-800 text-slate-300'
                   }`}
                 >
@@ -839,10 +843,22 @@ To protect service availability, this interactive preview allows 6 exploratory q
 
           {isTyping && (
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-cyan-950 border border-cyan-500/40 text-cyan-400">
+              <div
+                className={`p-2 rounded-lg ${
+                  isRecruiterMode
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'bg-cyan-950 border border-cyan-500/40 text-cyan-400'
+                }`}
+              >
                 <Bot className="w-4 h-4 animate-spin" />
               </div>
-              <div className="px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-xs font-mono text-cyan-400 flex items-center gap-1.5">
+              <div
+                className={`px-4 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5 ${
+                  isRecruiterMode
+                    ? 'bg-white border border-blue-200 text-blue-700'
+                    : 'bg-slate-900/80 border border-slate-800 text-cyan-400'
+                }`}
+              >
                 <span>FRIDAY is processing query</span>
                 <span className="animate-pulse">...</span>
               </div>
@@ -853,7 +869,7 @@ To protect service availability, this interactive preview allows 6 exploratory q
         {/* Input Bar */}
         <div
           className={`p-4 border-t flex items-center gap-3 ${
-            isRecruiterMode ? 'bg-white border-slate-200' : 'bg-slate-950 border-slate-800'
+            isRecruiterMode ? 'bg-white border-blue-200/80' : 'bg-slate-950 border-slate-800'
           }`}
         >
           <div className="relative flex-1">

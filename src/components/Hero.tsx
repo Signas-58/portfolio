@@ -30,13 +30,15 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background glow in cyber mode */}
-      {!isRecruiterMode && (
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div className="w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] opacity-60" />
-          <div className="w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[160px] opacity-40 -translate-y-20" />
-        </div>
-      )}
+      {/* Background glow in both modes */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div className={`w-[600px] h-[600px] rounded-full blur-[140px] transition-all duration-500 ${
+          isRecruiterMode ? 'bg-blue-400/20 opacity-60' : 'bg-cyan-500/10 opacity-60'
+        }`} />
+        <div className={`w-[450px] h-[450px] rounded-full blur-[160px] -translate-y-20 transition-all duration-500 ${
+          isRecruiterMode ? 'bg-sky-400/20 opacity-50' : 'bg-blue-600/10 opacity-40'
+        }`} />
+      </div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Status Pill */}
@@ -66,15 +68,19 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="space-y-4 mb-6"
         >
-          <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-slate-400">
+          <p className={`text-xs sm:text-sm font-mono tracking-widest uppercase ${
+            isRecruiterMode ? 'text-blue-700 font-semibold' : 'text-slate-400'
+          }`}>
             Information Systems // AI Engineering // Data Operations
           </p>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+          <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight ${
+            isRecruiterMode ? 'text-slate-900' : 'text-white'
+          }`}>
             <span>TSAKANE </span>
             <span
               className={
                 isRecruiterMode
-                  ? 'text-blue-700'
+                  ? 'text-blue-600'
                   : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500'
               }
             >
@@ -110,13 +116,9 @@ export default function Hero() {
             return (
               <motion.div
                 key={badge.name}
-                animate={
-                  isRecruiterMode
-                    ? {}
-                    : {
-                        y: [-5, 6, -5],
-                      }
-                }
+                animate={{
+                  y: isRecruiterMode ? [-3, 3, -3] : [-5, 6, -5],
+                }}
                 transition={{
                   repeat: Infinity,
                   duration: badge.duration,
@@ -125,7 +127,7 @@ export default function Hero() {
                 }}
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-mono border backdrop-blur-md transition-all duration-300 ${
                   isRecruiterMode
-                    ? 'bg-white border-slate-200 text-slate-700 shadow-sm'
+                    ? 'bg-white/90 border-blue-200/80 text-slate-800 shadow-sm hover:border-blue-400 hover:shadow-[0_0_15px_rgba(37,99,235,0.15)]'
                     : 'bg-slate-900/60 border-cyan-500/20 text-cyan-300 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.25)]'
                 }`}
               >
@@ -160,11 +162,11 @@ export default function Hero() {
             download="Stanford_Tsakane_Sithole_CV.pdf"
             className={`w-full sm:w-auto px-7 py-3 rounded-xl text-sm font-mono font-medium flex items-center justify-center gap-2 border transition-all duration-300 ${
               isRecruiterMode
-                ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300 shadow-sm'
+                ? 'bg-white hover:bg-blue-50 text-slate-800 border-blue-200 shadow-sm'
                 : 'bg-slate-900/60 hover:bg-slate-800/80 text-slate-200 border-slate-700 hover:border-cyan-500/50'
             }`}
           >
-            <Download className="w-4 h-4 text-cyan-400" />
+            <Download className={`w-4 h-4 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
             <span>Download CV (PDF)</span>
           </a>
 
@@ -197,7 +199,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
           className={`mt-12 pt-8 border-t flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono ${
-            isRecruiterMode ? 'border-slate-200 text-slate-500' : 'border-slate-800 text-slate-400'
+            isRecruiterMode ? 'border-blue-200/80 text-slate-600' : 'border-slate-800 text-slate-400'
           }`}
         >
           <div className="flex items-center gap-2">

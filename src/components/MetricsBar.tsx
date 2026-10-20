@@ -39,7 +39,7 @@ export default function MetricsBar() {
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 rounded-2xl border backdrop-blur-xl transition-all duration-300 ${
           isRecruiterMode
-            ? 'bg-white border-slate-200 shadow-md'
+            ? 'bg-white/90 border-blue-200/70 shadow-sm text-slate-800'
             : 'bg-[#060c19]/80 border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
         }`}
       >
@@ -50,7 +50,7 @@ export default function MetricsBar() {
               key={idx}
               className={`p-4 rounded-xl flex items-center gap-4 transition-all duration-200 ${
                 isRecruiterMode
-                  ? 'hover:bg-slate-50'
+                  ? 'hover:bg-blue-50/50'
                   : 'hover:bg-cyan-950/20 hover:border-cyan-500/30'
               }`}
             >
@@ -64,15 +64,15 @@ export default function MetricsBar() {
                 <Icon className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                <p className={`text-[11px] font-mono uppercase tracking-wider ${isRecruiterMode ? 'text-blue-700 font-semibold' : 'text-slate-400'}`}>
                   {item.label}
                 </p>
-                <h4 className="text-base sm:text-lg font-bold tracking-tight">
+                <h4 className={`text-base sm:text-lg font-bold tracking-tight ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                   {item.value}
                 </h4>
                 <p
                   className={`text-xs ${
-                    isRecruiterMode ? 'text-slate-500' : 'text-slate-400'
+                    isRecruiterMode ? 'text-slate-600' : 'text-slate-400'
                   }`}
                 >
                   {item.sub}

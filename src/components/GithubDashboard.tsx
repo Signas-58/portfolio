@@ -90,7 +90,9 @@ export default function GithubDashboard() {
             05 // OPEN SOURCE TELEMETRY
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           Developer Dashboard
         </h2>
         <p
@@ -99,7 +101,7 @@ export default function GithubDashboard() {
           }`}
         >
           Real-time activity and public repository insights from GitHub profile{' '}
-          <code className="text-cyan-400">@Signas-58</code>.
+          <code className={isRecruiterMode ? 'text-blue-700 font-bold' : 'text-cyan-400'}>@Signas-58</code>.
         </p>
       </div>
 
@@ -108,7 +110,7 @@ export default function GithubDashboard() {
         <div
           className={`lg:col-span-4 p-6 sm:p-8 rounded-2xl border backdrop-blur-xl space-y-6 ${
             isRecruiterMode
-              ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+              ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
               : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-300'
           }`}
         >
@@ -127,7 +129,7 @@ export default function GithubDashboard() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold">
+              <h3 className={`text-lg font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                 {userData.name || 'Tsakane Sithole'}
               </h3>
               <a
@@ -148,26 +150,26 @@ export default function GithubDashboard() {
 
           <div
             className={`pt-4 border-t grid grid-cols-3 gap-2 text-center text-xs font-mono ${
-              isRecruiterMode ? 'border-slate-200' : 'border-slate-800'
+              isRecruiterMode ? 'border-blue-100' : 'border-slate-800'
             }`}
           >
-            <div className="p-2 rounded-lg bg-slate-900/30">
-              <span className="text-base font-bold text-cyan-400 block">
+            <div className={`p-2 rounded-lg ${isRecruiterMode ? 'bg-blue-50/80 border border-blue-200' : 'bg-slate-900/30'}`}>
+              <span className={`text-base font-bold block ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>
                 {userData.public_repos}
               </span>
-              <span className="text-[10px] text-slate-400">Repositories</span>
+              <span className={`text-[10px] ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>Repositories</span>
             </div>
-            <div className="p-2 rounded-lg bg-slate-900/30">
-              <span className="text-base font-bold text-cyan-400 block">
+            <div className={`p-2 rounded-lg ${isRecruiterMode ? 'bg-blue-50/80 border border-blue-200' : 'bg-slate-900/30'}`}>
+              <span className={`text-base font-bold block ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>
                 {userData.followers}
               </span>
-              <span className="text-[10px] text-slate-400">Followers</span>
+              <span className={`text-[10px] ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>Followers</span>
             </div>
-            <div className="p-2 rounded-lg bg-slate-900/30">
-              <span className="text-base font-bold text-cyan-400 block">
+            <div className={`p-2 rounded-lg ${isRecruiterMode ? 'bg-blue-50/80 border border-blue-200' : 'bg-slate-900/30'}`}>
+              <span className={`text-base font-bold block ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>
                 Active
               </span>
-              <span className="text-[10px] text-slate-400">Contributions</span>
+              <span className={`text-[10px] ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>Contributions</span>
             </div>
           </div>
 
@@ -175,7 +177,11 @@ export default function GithubDashboard() {
             href={userData.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-2.5 rounded-xl text-xs font-mono font-medium flex items-center justify-center gap-2 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 transition-colors"
+            className={`w-full py-2.5 rounded-xl text-xs font-mono font-medium flex items-center justify-center gap-2 border transition-colors ${
+              isRecruiterMode
+                ? 'border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-700'
+                : 'border-cyan-500/40 hover:border-cyan-400 text-cyan-300'
+            }`}
           >
             <GithubIcon className="w-4 h-4" />
             <span>Visit @Signas-58 on GitHub</span>
@@ -195,24 +201,26 @@ export default function GithubDashboard() {
                 rel="noopener noreferrer"
                 className={`p-5 rounded-xl border backdrop-blur-md flex flex-col justify-between transition-all duration-300 group ${
                   isRecruiterMode
-                    ? 'bg-white border-slate-200 hover:border-blue-400 shadow-xs'
+                    ? 'bg-white/90 border-blue-200/70 hover:border-blue-400 hover:shadow-md shadow-xs'
                     : 'bg-slate-900/40 border-cyan-500/20 hover:border-cyan-400 hover:bg-slate-900/80'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <FolderGit2 className="w-4 h-4 text-cyan-400" />
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                    <FolderGit2 className={`w-4 h-4 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-colors" />
                   </div>
-                  <h4 className="text-xs font-mono font-bold tracking-tight mb-2 truncate group-hover:text-cyan-400 transition-colors">
+                  <h4 className={`text-xs font-mono font-bold tracking-tight mb-2 truncate transition-colors ${
+                    isRecruiterMode ? 'text-slate-900 group-hover:text-blue-600' : 'text-slate-100 group-hover:text-cyan-400'
+                  }`}>
                     {repo.name}
                   </h4>
-                  <p className="text-[11px] text-slate-400 line-clamp-2 mb-4">
+                  <p className={`text-[11px] line-clamp-2 mb-4 ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
                     {repo.desc}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400">
+                <div className={`flex items-center gap-2 text-[10px] font-mono ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
                   <span
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: repo.langColor }}
@@ -227,7 +235,7 @@ export default function GithubDashboard() {
           <div
             className={`p-6 rounded-2xl border backdrop-blur-xl space-y-4 ${
               isRecruiterMode
-                ? 'bg-white border-slate-200'
+                ? 'bg-white/90 border-blue-200/70 shadow-sm'
                 : 'bg-[#060c19]/70 border-cyan-500/20'
             }`}
           >

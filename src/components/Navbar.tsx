@@ -41,7 +41,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? isRecruiterMode
-            ? 'bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm'
+            ? 'bg-[#f0f4f9]/90 backdrop-blur-md border-b border-blue-200/60 shadow-sm'
             : 'bg-[#030712]/85 backdrop-blur-md border-b border-cyan-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
           : 'bg-transparent border-b border-transparent'
       }`}
@@ -61,7 +61,9 @@ export default function Navbar() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-sm tracking-widest font-semibold uppercase">
+                <span className={`font-mono text-sm tracking-widest font-semibold uppercase ${
+                  isRecruiterMode ? 'text-slate-900' : 'text-slate-100'
+                }`}>
                   TSAKANE.OS
                 </span>
                 <span
@@ -102,24 +104,15 @@ export default function Navbar() {
             {/* Recruiter Mode Switch */}
             <button
               onClick={toggleRecruiterMode}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-300 border ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 border ${
                 isRecruiterMode
                   ? 'bg-blue-50 border-blue-300 text-blue-700 shadow-sm hover:bg-blue-100'
                   : 'bg-cyan-950/40 border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/30'
               }`}
-              title="Toggle Recruiter Mode for a clean, high-contrast resume layout"
+              title="Toggle Recruiter View / Light Mode"
             >
-              {isRecruiterMode ? (
-                <>
-                  <Briefcase className="w-3.5 h-3.5 text-blue-600" />
-                  <span>Recruiter Mode: ON</span>
-                </>
-              ) : (
-                <>
-                  <Zap className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Recruiter View</span>
-                </>
-              )}
+              <Briefcase className={`w-3.5 h-3.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
+              <span>{isRecruiterMode ? 'Recruiter View / Light Mode: ON' : 'Recruiter View / Light Mode'}</span>
             </button>
 
             {/* CV Modal Trigger */}
@@ -140,13 +133,13 @@ export default function Navbar() {
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={toggleRecruiterMode}
-              className={`p-2 rounded-lg border text-xs ${
+              className={`px-2.5 py-1.5 rounded-lg border text-xs font-mono ${
                 isRecruiterMode
                   ? 'border-blue-300 bg-blue-50 text-blue-700'
                   : 'border-cyan-500/40 bg-cyan-950/40 text-cyan-400'
               }`}
             >
-              {isRecruiterMode ? 'Recruiter' : 'Cyber'}
+              {isRecruiterMode ? 'Dark Mode' : 'Light Mode'}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -187,7 +180,21 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 border-t border-slate-200 dark:border-cyan-500/20 flex gap-2">
+            <div className="pt-2 border-t border-slate-200 dark:border-cyan-500/20 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  toggleRecruiterMode();
+                  setMobileMenuOpen(false);
+                }}
+                className={`w-full py-2.5 rounded-lg text-xs font-mono font-medium flex items-center justify-center gap-2 border ${
+                  isRecruiterMode
+                    ? 'bg-blue-50 border-blue-300 text-blue-700'
+                    : 'bg-cyan-950/40 border-cyan-500/30 text-cyan-300'
+                }`}
+              >
+                <Briefcase className="w-4 h-4" />
+                <span>{isRecruiterMode ? 'Recruiter View / Light Mode: ON' : 'Recruiter View / Light Mode'}</span>
+              </button>
               <button
                 onClick={() => {
                   setIsCVModalOpen(true);

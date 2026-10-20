@@ -49,7 +49,9 @@ export default function About() {
             01 // PROFILE & BACKGROUND
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           Professional Biography
         </h2>
         <p
@@ -66,7 +68,7 @@ export default function About() {
         <div
           className={`lg:col-span-7 p-6 sm:p-8 rounded-2xl border backdrop-blur-xl space-y-6 ${
             isRecruiterMode
-              ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+              ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
               : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-300'
           }`}
         >
@@ -101,21 +103,21 @@ export default function About() {
           {/* Key Facts list */}
           <div
             className={`pt-6 border-t grid grid-cols-1 sm:grid-cols-2 gap-4 ${
-              isRecruiterMode ? 'border-slate-200' : 'border-slate-800'
+              isRecruiterMode ? 'border-blue-100' : 'border-slate-800'
             }`}
           >
             <div className="flex items-start gap-3">
               <FileCheck className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
               <div>
-                <p className="text-xs font-mono font-semibold uppercase">Degree Classification</p>
-                <p className="text-xs text-slate-400">BCom Honours in Information Systems</p>
+                <p className={`text-xs font-mono font-semibold uppercase ${isRecruiterMode ? 'text-slate-800' : 'text-slate-200'}`}>Academic Qualification</p>
+                <p className={`text-xs ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>BCom Honours in Information Systems</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <Building className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
               <div>
-                <p className="text-xs font-mono font-semibold uppercase">Enterprise Experience</p>
-                <p className="text-xs text-slate-400">Digital Banking & Merchant Services (Metbank)</p>
+                <p className={`text-xs font-mono font-semibold uppercase ${isRecruiterMode ? 'text-slate-800' : 'text-slate-200'}`}>Enterprise Experience</p>
+                <p className={`text-xs ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>Digital Banking & Merchant Services (Metbank)</p>
               </div>
             </div>
           </div>
@@ -130,7 +132,7 @@ export default function About() {
                 key={i}
                 className={`p-5 rounded-xl border backdrop-blur-md transition-all duration-300 ${
                   isRecruiterMode
-                    ? 'bg-slate-50 border-slate-200 hover:border-blue-400 hover:bg-white shadow-xs'
+                    ? 'bg-white/90 border-blue-200/70 hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(37,99,235,0.1)] shadow-xs'
                     : 'bg-slate-900/50 border-cyan-500/15 hover:border-cyan-400/40 hover:bg-slate-900/80'
                 }`}
               >
@@ -144,7 +146,7 @@ export default function About() {
                   >
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-sm font-bold tracking-tight">
+                  <h3 className={`text-sm font-bold tracking-tight ${isRecruiterMode ? 'text-slate-900' : 'text-slate-100'}`}>
                     {c.title}
                   </h3>
                 </div>

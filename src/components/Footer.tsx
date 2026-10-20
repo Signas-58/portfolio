@@ -16,7 +16,7 @@ export default function Footer() {
     <footer
       className={`border-t py-12 px-4 sm:px-6 lg:px-8 transition-colors ${
         isRecruiterMode
-          ? 'bg-slate-100 border-slate-200 text-slate-600'
+          ? 'bg-[#e4ebf5]/80 border-blue-200/80 text-slate-700'
           : 'bg-[#02050e] border-cyan-500/20 text-slate-400'
       }`}
     >
@@ -25,11 +25,13 @@ export default function Footer() {
         <div className="space-y-1 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-200 dark:text-slate-200">
+            <span className={`font-mono text-xs font-bold uppercase tracking-wider ${
+              isRecruiterMode ? 'text-slate-900' : 'text-slate-200'
+            }`}>
               TSAKANE.OS // SYS_STATUS: OPERATIONAL
             </span>
           </div>
-          <p className="text-[11px] font-mono text-slate-500">
+          <p className={`text-[11px] font-mono ${isRecruiterMode ? 'text-slate-600' : 'text-slate-500'}`}>
             Designed & Engineered for Information Systems, AI & Data Operations.
           </p>
         </div>
@@ -63,8 +65,8 @@ export default function Footer() {
             <TelegramIcon className="w-3.5 h-3.5" />
             <span>Telegram</span>
           </a>
-          <span className="text-slate-600">|</span>
-          <span className="text-[11px] font-mono text-cyan-400">
+          <span className="text-slate-400">|</span>
+          <span className={`text-[11px] font-mono ${isRecruiterMode ? 'text-blue-600 font-semibold' : 'text-cyan-400'}`}>
             tsakanesithole.co.zw
           </span>
         </div>

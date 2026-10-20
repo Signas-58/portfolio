@@ -26,7 +26,9 @@ export default function Experience() {
             02 // TRACK RECORD
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           Experience & Education
         </h2>
         <p
@@ -43,11 +45,13 @@ export default function Experience() {
         <div
           className={`p-6 sm:p-8 rounded-2xl border backdrop-blur-xl space-y-6 ${
             isRecruiterMode
-              ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+              ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
               : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-300'
           }`}
         >
-          <div className="flex items-center justify-between flex-wrap gap-2 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div className={`flex items-center justify-between flex-wrap gap-2 pb-4 border-b ${
+            isRecruiterMode ? 'border-blue-100' : 'border-slate-800'
+          }`}>
             <div className="flex items-center gap-3">
               <div
                 className={`p-2.5 rounded-lg ${
@@ -59,20 +63,20 @@ export default function Experience() {
                 <Building2 className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">
+                <h3 className={`text-lg font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                   Digital Banking & Merchant Services Officer
                 </h3>
-                <p className="text-xs font-mono text-cyan-400">Metbank Limited • Harare, Zimbabwe</p>
-                <p className="text-[11px] text-slate-400">Reporting to: Head of Digital Banking & Head of IT</p>
+                <p className={`text-xs font-mono ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>Metbank Limited • Harare, Zimbabwe</p>
+                <p className={`text-[11px] ${isRecruiterMode ? 'text-slate-500' : 'text-slate-400'}`}>Reporting to: Head of Digital Banking & Head of IT</p>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400">
+            <div className={`flex items-center gap-1.5 text-xs font-mono ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>
               <Calendar className="w-3.5 h-3.5" />
               <span>Feb 2024 – Jan 2025</span>
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          <p className={`text-xs sm:text-sm leading-relaxed ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
             Provided front-line technical and operational support across core digital banking platforms and POS merchant infrastructure, ensuring high availability and seamless customer transactions.
           </p>
 
@@ -114,7 +118,7 @@ export default function Experience() {
                 key={t}
                 className={`px-2.5 py-1 rounded-md border ${
                   isRecruiterMode
-                    ? 'bg-slate-100 border-slate-200 text-slate-700'
+                    ? 'bg-blue-50/80 border-blue-200 text-blue-700'
                     : 'bg-slate-900 border-cyan-500/20 text-cyan-300'
                 }`}
               >
@@ -128,11 +132,13 @@ export default function Experience() {
         <div
           className={`p-6 sm:p-8 rounded-2xl border backdrop-blur-xl space-y-6 ${
             isRecruiterMode
-              ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+              ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
               : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-300'
           }`}
         >
-          <div className="flex items-center justify-between flex-wrap gap-2 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div className={`flex items-center justify-between flex-wrap gap-2 pb-4 border-b ${
+            isRecruiterMode ? 'border-blue-100' : 'border-slate-800'
+          }`}>
             <div className="flex items-center gap-3">
               <div
                 className={`p-2.5 rounded-lg ${
@@ -144,20 +150,20 @@ export default function Experience() {
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">
+                <h3 className={`text-lg font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                   BCom Honours in Information Systems
                 </h3>
-                <p className="text-xs font-mono text-cyan-400">Midlands State University (MSU)</p>
-                <p className="text-[11px] text-slate-400 font-mono">Faculty of Business Sciences</p>
+                <p className={`text-xs font-mono ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>Midlands State University (MSU)</p>
+                <p className={`text-[11px] ${isRecruiterMode ? 'text-slate-500' : 'text-slate-400'} font-mono`}>Faculty of Business Sciences</p>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400">
+            <div className={`flex items-center gap-1.5 text-xs font-mono ${isRecruiterMode ? 'text-blue-700' : 'text-cyan-400'}`}>
               <Award className="w-3.5 h-3.5" />
               <span>2021 – 2025</span>
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          <p className={`text-xs sm:text-sm leading-relaxed ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
             Four-year comprehensive degree (Faculty of Business Sciences) covering enterprise database architectures, systems analysis, cyber risk governance, data analytics, and software project management.
           </p>
 
@@ -188,7 +194,7 @@ export default function Experience() {
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
               Target Career Pathways:
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className={`text-xs leading-relaxed ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
               Equipped to excel in ICT Graduate Trainee schemes, Systems Support Engineering, Data & BI Analysis, Junior DevOps/Cloud Administration, and Cybersecurity Operations.
             </p>
           </div>

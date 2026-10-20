@@ -108,7 +108,9 @@ export default function Skills() {
             06 // TECHNICAL PROFICIENCY
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           Skills & Competencies
         </h2>
         <p
@@ -129,7 +131,7 @@ export default function Skills() {
               key={group.title}
               className={`p-6 rounded-2xl border backdrop-blur-xl space-y-4 transition-all duration-300 ${
                 isRecruiterMode
-                  ? 'bg-white border-slate-200 hover:border-blue-400 shadow-xs text-slate-800'
+                  ? 'bg-white/90 border-blue-200/70 hover:border-blue-400 hover:shadow-[0_8px_30px_rgba(37,99,235,0.1)] shadow-xs text-slate-800'
                   : 'bg-[#060c19]/80 border-cyan-500/20 hover:border-cyan-400/40 text-slate-200'
               }`}
             >
@@ -144,11 +146,11 @@ export default function Skills() {
                   >
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-sm font-bold tracking-tight">
+                  <h3 className={`text-sm font-bold tracking-tight ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                     {group.title}
                   </h3>
                 </div>
-                <span className="text-[10px] font-mono text-cyan-400">
+                <span className={`text-[10px] font-mono ${isRecruiterMode ? 'text-blue-700 font-bold' : 'text-cyan-400'}`}>
                   {group.code}
                 </span>
               </div>
@@ -159,15 +161,21 @@ export default function Skills() {
                     key={skill.name}
                     className="flex items-center justify-between text-xs"
                   >
-                    <span className="font-medium text-slate-300 dark:text-slate-300">
+                    <span className={`font-medium ${isRecruiterMode ? 'text-slate-700 font-semibold' : 'text-slate-300'}`}>
                       {skill.name}
                     </span>
                     <span
                       className={`text-[10px] font-mono px-2 py-0.5 rounded ${
                         skill.level === 'Proficient'
-                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                          ? isRecruiterMode
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium'
+                            : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                           : skill.level === 'Practical Experience'
-                          ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
+                          ? isRecruiterMode
+                            ? 'bg-blue-50 text-blue-700 border border-blue-300 font-medium'
+                            : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
+                          : isRecruiterMode
+                          ? 'bg-slate-100 text-slate-600 border border-slate-300'
                           : 'bg-slate-800 text-slate-400 border border-slate-700'
                       }`}
                     >
@@ -185,13 +193,13 @@ export default function Skills() {
       <div
         className={`mt-10 p-6 rounded-2xl border backdrop-blur-xl ${
           isRecruiterMode
-            ? 'bg-slate-50 border-slate-200'
+            ? 'bg-white/90 border-blue-200/70 shadow-sm'
             : 'bg-gradient-to-r from-slate-900/60 to-cyan-950/20 border-cyan-500/20'
         }`}
       >
         <div className="flex items-center gap-2 mb-3">
-          <Compass className="w-4 h-4 text-cyan-400" />
-          <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-400">
+          <Compass className={`w-4 h-4 ${isRecruiterMode ? 'text-blue-600' : 'text-cyan-400'}`} />
+          <h4 className={`text-xs font-mono uppercase tracking-wider ${isRecruiterMode ? 'text-blue-700 font-bold' : 'text-cyan-400'}`}>
             Active Research & Continuous Learning Radar:
           </h4>
         </div>
@@ -201,7 +209,7 @@ export default function Skills() {
               key={tech}
               className={`px-3 py-1.5 rounded-lg text-xs font-mono border ${
                 isRecruiterMode
-                  ? 'bg-white border-slate-300 text-slate-700'
+                  ? 'bg-blue-50/80 border-blue-200 text-blue-900 font-medium'
                   : 'bg-slate-900/80 border-cyan-500/30 text-slate-300'
               }`}
             >

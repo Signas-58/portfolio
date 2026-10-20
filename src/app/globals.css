@@ -14,15 +14,15 @@
   }
 
   .theme-recruiter {
-    --bg-primary: #f8fafc;
+    --bg-primary: #f0f4f9;
     --bg-secondary: #ffffff;
-    --bg-card: rgba(255, 255, 255, 0.95);
-    --border-color: rgba(203, 213, 225, 0.9);
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --border-color: rgba(147, 197, 253, 0.45);
     --text-primary: #0f172a;
     --text-secondary: #475569;
-    --accent-cyan: #1d4ed8;
-    --accent-blue: #2563eb;
-    --accent-glow: rgba(29, 78, 216, 0.15);
+    --accent-cyan: #2563eb;
+    --accent-blue: #0284c7;
+    --accent-glow: rgba(37, 99, 235, 0.18);
   }
 }
 
@@ -64,8 +64,8 @@ body {
 }
 
 .theme-recruiter .glass-card:hover {
-  border-color: rgba(29, 78, 216, 0.4);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
   transform: translateY(-2px);
 }
 
@@ -86,16 +86,16 @@ body {
 }
 
 .theme-recruiter .btn-cyber-primary {
-  background: #1d4ed8;
-  border: 1px solid #1d4ed8;
+  background: #2563eb;
+  border: 1px solid #2563eb;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 }
 
 .theme-recruiter .btn-cyber-primary:hover {
-  background: #1e40af;
-  border-color: #1e40af;
-  box-shadow: 0 6px 16px rgba(29, 78, 216, 0.3);
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
   color: #ffffff;
 }
 
@@ -107,10 +107,12 @@ body {
     linear-gradient(to bottom, rgba(0, 243, 255, 0.04) 1px, transparent 1px);
 }
 
-.theme-recruiter .cyber-grid {
+.theme-recruiter .cyber-grid,
+.theme-recruiter.cyber-grid {
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
 }
 
 /* Custom Scrollbar */

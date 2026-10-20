@@ -8,9 +8,6 @@ export default function ParticleBackground() {
   const { isRecruiterMode } = useTheme();
 
   useEffect(() => {
-    // In recruiter mode or reduced motion, disable particle canvas for performance and clarity
-    if (isRecruiterMode) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -65,7 +62,9 @@ export default function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 243, 255, ${p.alpha})`;
+        ctx.fillStyle = isRecruiterMode
+          ? `rgba(37, 99, 235, ${p.alpha * 0.7})`
+          : `rgba(0, 243, 255, ${p.alpha})`;
         ctx.fill();
 
         // Connect nearby particles
@@ -76,7 +75,9 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 243, 255, ${0.12 * (1 - dist / 120)})`;
+            ctx.strokeStyle = isRecruiterMode
+              ? `rgba(37, 99, 235, ${0.1 * (1 - dist / 120)})`
+              : `rgba(0, 243, 255, ${0.12 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -94,14 +95,12 @@ export default function ParticleBackground() {
     };
   }, [isRecruiterMode]);
 
-  if (isRecruiterMode) {
-    return null;
-  }
-
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-40"
+      className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-300 ${
+        isRecruiterMode ? 'opacity-45' : 'opacity-40'
+      }`}
       aria-hidden="true"
     />
   );

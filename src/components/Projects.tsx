@@ -181,7 +181,9 @@ export default function Projects() {
               03 // FEATURED WORK
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+            isRecruiterMode ? 'text-slate-900' : 'text-white'
+          }`}>
             Systems & Case Studies
           </h2>
           <p
@@ -205,7 +207,7 @@ export default function Projects() {
                     ? 'bg-blue-600 border-blue-600 text-white shadow-sm'
                     : 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_12px_rgba(0,243,255,0.3)]'
                   : isRecruiterMode
-                  ? 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-white border-blue-200/80 text-slate-700 hover:bg-blue-50 hover:text-blue-700'
                   : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-cyan-500/30'
               }`}
             >
@@ -222,14 +224,14 @@ export default function Projects() {
             key={project.id}
             className={`group rounded-2xl border p-6 flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-xl ${
               isRecruiterMode
-                ? 'bg-white border-slate-200 hover:border-blue-400 hover:shadow-lg text-slate-800'
+                ? 'bg-white/90 border-blue-200/70 hover:border-blue-400 hover:shadow-[0_8px_30px_rgba(37,99,235,0.12)] text-slate-800'
                 : 'bg-[#060c19]/80 border-cyan-500/20 hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(0,243,255,0.2)] text-slate-200'
             }`}
           >
             {/* Top Indicator */}
             <div>
               <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="text-[10px] font-mono tracking-wider text-cyan-400 uppercase">
+                <span className={`text-[10px] font-mono tracking-wider uppercase ${isRecruiterMode ? 'text-blue-700 font-bold' : 'text-cyan-400'}`}>
                   {project.codeId}
                 </span>
                 <span
@@ -245,7 +247,9 @@ export default function Projects() {
                 </span>
               </div>
 
-              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className={`text-lg font-bold tracking-tight mb-2 transition-colors ${
+                isRecruiterMode ? 'text-slate-900 group-hover:text-blue-600' : 'text-slate-100 group-hover:text-cyan-400'
+              }`}>
                 {project.title}
               </h3>
 
@@ -264,7 +268,11 @@ export default function Projects() {
                 {project.tags.slice(0, 4).map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300"
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
+                      isRecruiterMode
+                        ? 'bg-blue-50/80 border-blue-200 text-blue-700 font-medium'
+                        : 'bg-slate-900 border-slate-800 text-slate-300'
+                    }`}
                   >
                     {tag}
                   </span>

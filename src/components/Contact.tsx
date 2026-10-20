@@ -81,7 +81,9 @@ export default function Contact() {
             07 // SECURE COMMUNICATION
           </span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <h2 className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${
+          isRecruiterMode ? 'text-slate-900' : 'text-white'
+        }`}>
           Direct Inquiries & Hiring
         </h2>
         <p
@@ -99,14 +101,14 @@ export default function Contact() {
           <div
             className={`p-6 sm:p-8 rounded-2xl border backdrop-blur-xl space-y-6 ${
               isRecruiterMode
-                ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
                 : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-300'
             }`}
           >
-            <h3 className="text-lg font-bold">
+            <h3 className={`text-lg font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
               Direct Contact Channels
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <p className={`text-xs sm:text-sm leading-relaxed ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
               Whether you are evaluating candidates for IT graduate programmes, banking operations, systems engineering, or technical collaboration, feel free to reach out directly.
             </p>
 
@@ -164,7 +166,7 @@ export default function Contact() {
         <div
           className={`lg:col-span-7 p-6 sm:p-8 rounded-2xl border backdrop-blur-xl ${
             isRecruiterMode
-              ? 'bg-white border-slate-200 text-slate-800 shadow-sm'
+              ? 'bg-white/90 border-blue-200/70 text-slate-800 shadow-sm'
               : 'bg-[#060c19]/70 border-cyan-500/20 text-slate-200'
           }`}
         >
@@ -196,10 +198,10 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <h3 className="text-lg font-bold mb-1">
+              <h3 className={`text-lg font-bold mb-1 ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
                 Dispatch an Inquiry
               </h3>
-              <p className="text-xs text-slate-400 mb-4">
+              <p className={`text-xs mb-4 ${isRecruiterMode ? 'text-slate-600' : 'text-slate-400'}`}>
                 Recruiters and hiring managers can reach out directly using the form below.
               </p>
 
