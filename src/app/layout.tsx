@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tsakane.co.zw'),
   title: 'Tsakane Sithole | Information Systems, AI & Systems Engineer',
   description:
     'Portfolio of Tsakane Sithole (BCom Honours Information Systems, Midlands State University). Experience in Metbank Digital Banking & Merchant Services, AI Voice Assistants (FRIDAY), and Offline-First Education Platforms (DzidzaAI).',
@@ -31,20 +32,32 @@ export const metadata: Metadata = {
     'Zimbabwe Developer',
   ],
   authors: [{ name: 'Tsakane Sithole', url: 'https://github.com/Signas-58' }],
+  alternates: {
+    canonical: 'https://tsakane.co.zw',
+  },
   openGraph: {
     title: 'Tsakane Sithole | Information Systems & AI Portfolio',
     description:
       'Explore projects, engineering case studies, and digital banking experience of Tsakane Sithole.',
-    url: 'https://tsakanesithole.co.zw',
+    url: 'https://tsakane.co.zw',
     siteName: 'TSakaneOS',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Tsakane Sithole | Information Systems, AI & Systems Engineer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tsakane Sithole | Information Systems & AI Portfolio',
     description:
       'Information Systems Honours graduate with Metbank digital banking experience and AI automation systems.',
+    images: ['/og-image.jpg'],
   },
 };
 

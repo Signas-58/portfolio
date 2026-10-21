@@ -504,7 +504,7 @@ Or click the "Download CV (PDF)" button at the top of the page!`;
 • Host Platform : Next.js 16.4 App Router (Turbopack)
 • Client Engine : React 19 + TypeScript
 • Deployment   : Vercel Global Edge Network
-• Domain Target : tsakanesithole.co.zw
+• Domain Target : tsakane.co.zw
 • Timezone      : Harare, Zimbabwe (CAT / UTC+2)
 • Interface     : Dual-Theme (Dev Cyber HUD / Recruiter View)
 • System Status : 100% Operational // 0 Active Vulnerabilities`;

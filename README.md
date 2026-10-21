@@ -45,7 +45,7 @@
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with custom glassmorphism utilities
 - **Motion:** [Framer Motion](https://www.framer.com/motion/)
 - **Icons:** [Lucide React](https://lucide.dev/) + Custom Vector SVGs
-- **Deployment Target:** [Vercel](https://vercel.com/) / `tsakanesithole.co.zw`
+- **Deployment Target:** [Vercel](https://vercel.com/) / `tsakane.co.zw`
 
 ---
 
@@ -82,9 +82,9 @@ npm run start
 
 ## 📬 Contact & Links
 
-- **Portfolio:** [tsakanesithole.co.zw](https://tsakanesithole.co.zw)
+- **Portfolio:** [tsakane.co.zw](https://tsakane.co.zw)
 - **GitHub:** [@Signas-58](https://github.com/Signas-58)
-- **LinkedIn:** [Tsakane Sithole](https://linkedin.com/in/tsakane-sithole)
-- **Email:** `tsakane@tsakanesithole.co.zw`
+- **LinkedIn:** [Tsakane Sithole](https://www.linkedin.com/in/tsakane-sithole-b39276197)
+- **Email:** `tsakane.1578@gmail.com`
 
 © 2026 Tsakane Sithole. All rights reserved.
