@@ -67,7 +67,7 @@ export default function Footer() {
           </a>
           <span className="text-slate-400">|</span>
           <span className={`text-[11px] font-mono ${isRecruiterMode ? 'text-blue-600 font-semibold' : 'text-cyan-400'}`}>
-            tsakanesithole.co.zw
+            tsakane.co.zw
           </span>
         </div>
 
