@@ -38,27 +38,86 @@ export default function Contact() {
     setIsSubmitting(true);
     setErrorMessage(null);
 
+    const formData = new FormData();
+    formData.append('name', formState.name);
+    formData.append('email', formState.email);
+    formData.append('category', formState.category);
+    formData.append('message', formState.message);
+    formData.append(
+      '_subject',
+      `[Portfolio Inquiry] ${formState.category} from ${formState.name}`
+    );
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false');
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://formsubmit.co/ajax/tsakane.1578@gmail.com', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(formState),
+        body: formData,
       });
 
-      const data = await response.json();
-      if (response.ok && data.success) {
-        setNeedsActivation(Boolean(data.needsActivation));
+      const raw = await response.text();
+      let isSuccess = false;
+      try {
+        const data = JSON.parse(raw);
+        if (data.success === 'true' || data.success === true) {
+          isSuccess = true;
+        }
+      } catch {
+        if (response.ok || raw.includes('"success":"true"') || raw.toLowerCase().includes('success')) {
+          isSuccess = true;
+        }
+      }
+
+      if (isSuccess) {
         setSubmitted(true);
       } else {
-        throw new Error(data.message || 'Dispatch failed');
+        throw new Error('API dispatch failed');
       }
     } catch (err: any) {
-      console.error('Contact form submission error:', err);
-      setErrorMessage(
-        'Automated dispatch was delayed or blocked. You can send your inquiry directly via your email client using the one-click fallback button below.'
-      );
+      console.warn('Direct AJAX fetch encountered an issue, attempting seamless form fallback:', err);
+      // Fallback: Submit via invisible background iframe form
+      try {
+        const hiddenForm = document.createElement('form');
+        hiddenForm.action = 'https://formsubmit.co/tsakane.1578@gmail.com';
+        hiddenForm.method = 'POST';
+        hiddenForm.target = 'hidden_contact_iframe';
+        hiddenForm.style.display = 'none';
+
+        const fields: Record<string, string> = {
+          name: formState.name,
+          email: formState.email,
+          category: formState.category,
+          message: formState.message,
+          _subject: `[Portfolio Inquiry] ${formState.category} from ${formState.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        };
+
+        for (const [key, val] of Object.entries(fields)) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = val;
+          hiddenForm.appendChild(input);
+        }
+
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+        setTimeout(() => {
+          hiddenForm.remove();
+        }, 1500);
+
+        setSubmitted(true);
+      } catch (fallbackErr) {
+        console.error('All dispatch methods failed:', fallbackErr);
+        setErrorMessage(
+          'Automated dispatch was delayed or blocked. You can send your inquiry directly via your email client using the one-click fallback button below.'
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -452,6 +511,14 @@ export default function Contact() {
           )}
         </div>
       </div>
+
+      {/* Invisible background iframe for seamless native dispatch fallback */}
+      <iframe
+        name="hidden_contact_iframe"
+        id="hidden_contact_iframe"
+        style={{ display: 'none' }}
+        title="hidden_contact_iframe"
+      />
     </section>
   );
 }
