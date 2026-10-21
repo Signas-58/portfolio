@@ -29,6 +29,7 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [needsActivation, setNeedsActivation] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,25 +39,17 @@ export default function Contact() {
     setErrorMessage(null);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/tsakane.1578@gmail.com', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
         },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          category: formState.category,
-          message: formState.message,
-          _subject: `New Portfolio Inquiry: ${formState.category} from ${formState.name}`,
-          _template: 'table',
-          _captcha: 'false',
-        }),
+        body: JSON.stringify(formState),
       });
 
       const data = await response.json();
-      if (response.ok && (data.success === 'true' || data.success === true)) {
+      if (response.ok && data.success) {
+        setNeedsActivation(Boolean(data.needsActivation));
         setSubmitted(true);
       } else {
         throw new Error(data.message || 'Dispatch failed');
@@ -64,7 +57,7 @@ export default function Contact() {
     } catch (err: any) {
       console.error('Contact form submission error:', err);
       setErrorMessage(
-        'Automated dispatch was delayed or blocked by browser settings. You can send your inquiry directly via your email client using the one-click fallback button below.'
+        'Automated dispatch was delayed or blocked. You can send your inquiry directly via your email client using the one-click fallback button below.'
       );
     } finally {
       setIsSubmitting(false);
@@ -218,36 +211,78 @@ export default function Contact() {
           }`}
         >
           {submitted ? (
-            <div className="py-12 text-center space-y-4">
-              <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center mx-auto text-emerald-400">
-                <CheckCircle2 className="w-8 h-8" />
+            needsActivation ? (
+              <div className="py-12 text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-amber-500/20 border border-amber-400 flex items-center justify-center mx-auto text-amber-400">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <h3 className={`text-xl font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
+                  Action Required: One-Time Form Activation
+                </h3>
+                <p className={`text-xs sm:text-sm max-w-lg mx-auto ${isRecruiterMode ? 'text-slate-700' : 'text-slate-300'}`}>
+                  FormSubmit has sent an activation link to <strong>tsakane.1578@gmail.com</strong>.
+                  <br />
+                  Please open that email and click the <strong>&quot;Activate Form&quot;</strong> button once. As soon as you click it, this inquiry and all future recruiter messages will land directly in your inbox!
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <a
+                    href="https://mail.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-lg text-xs font-mono font-semibold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-sm"
+                  >
+                    <span>Open Gmail Inbox</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setNeedsActivation(false);
+                      setErrorMessage(null);
+                    }}
+                    className={`px-5 py-2.5 rounded-lg text-xs font-mono transition-colors border ${
+                      isRecruiterMode
+                        ? 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+                        : 'border-cyan-500/40 text-cyan-300 hover:bg-cyan-950/40'
+                    }`}
+                  >
+                    Back to Form
+                  </button>
+                </div>
               </div>
-              <h3 className={`text-xl font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
-                Transmission Received & Delivered
-              </h3>
-              <p className={`text-xs sm:text-sm max-w-md mx-auto ${isRecruiterMode ? 'text-slate-700' : 'text-slate-300'}`}>
-                Thank you, <strong>{formState.name || 'there'}</strong>. Your inquiry has been dispatched directly to Tsakane&apos;s inbox (<code>tsakane.1578@gmail.com</code>). Expect a response shortly at <strong>{formState.email}</strong>.
-              </p>
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setErrorMessage(null);
-                  setFormState({
-                    name: '',
-                    email: '',
-                    category: 'Recruitment / Graduate Programme',
-                    message: '',
-                  });
-                }}
-                className={`mt-4 px-6 py-2.5 rounded-lg text-xs font-mono transition-colors border ${
-                  isRecruiterMode
-                    ? 'bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100 font-semibold'
-                    : 'border-cyan-500/40 text-cyan-300 hover:bg-cyan-950/40'
-                }`}
-              >
-                Send Another Inquiry
-              </button>
-            </div>
+            ) : (
+              <div className="py-12 text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center mx-auto text-emerald-400">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className={`text-xl font-bold ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
+                  Transmission Received & Delivered
+                </h3>
+                <p className={`text-xs sm:text-sm max-w-md mx-auto ${isRecruiterMode ? 'text-slate-700' : 'text-slate-300'}`}>
+                  Thank you, <strong>{formState.name || 'there'}</strong>. Your inquiry has been dispatched directly to Tsakane&apos;s personal inbox (<code>tsakane.1578@gmail.com</code>). Expect a response shortly at <strong>{formState.email}</strong>.
+                </p>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setNeedsActivation(false);
+                    setErrorMessage(null);
+                    setFormState({
+                      name: '',
+                      email: '',
+                      category: 'Recruitment / Graduate Programme',
+                      message: '',
+                    });
+                  }}
+                  className={`mt-4 px-6 py-2.5 rounded-lg text-xs font-mono transition-colors border ${
+                    isRecruiterMode
+                      ? 'bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100 font-semibold'
+                      : 'border-cyan-500/40 text-cyan-300 hover:bg-cyan-950/40'
+                  }`}
+                >
+                  Send Another Inquiry
+                </button>
+              </div>
+            )
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <h3 className={`text-lg font-bold mb-1 ${isRecruiterMode ? 'text-slate-900' : 'text-white'}`}>
